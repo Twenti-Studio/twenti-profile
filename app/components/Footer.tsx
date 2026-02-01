@@ -3,11 +3,8 @@
 import {
     ArrowRight,
     Github,
-    Instagram,
-    Linkedin,
     Mail,
-    MapPin,
-    MessageCircle
+    MapPin
 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -145,7 +142,7 @@ const Footer = () => {
                             <li className="flex items-start gap-3">
                                 <MapPin className="w-5 h-5 text-orange-500 mt-0.5 flex-shrink-0" />
                                 <span className="text-sm text-gray-400">
-                                    Jakarta, Indonesia
+                                    Balikpapan, Indonesia
                                 </span>
                             </li>
                         </ul>
@@ -165,12 +162,12 @@ const Footer = () => {
                         © {currentYear} Twenti Studio. Hak cipta dilindungi.
                     </p>
                     <div className="flex items-center gap-6 text-sm text-gray-500">
-                        <Link href="/privacy" className="hover:text-orange-500 transition-colors">
-                            Kebijakan Privasi
+                        <Link href="/privasi" className="hover:text-orange-500 transition-colors">
+                            Privacy Policy
                         </Link>
-                        <span className="opacity-30">•</span>
-                        <Link href="/terms" className="hover:text-orange-500 transition-colors">
-                            Syarat & Ketentuan
+                        <span className="text-gray-600">•</span>
+                        <Link href="/syarat" className="hover:text-orange-500 transition-colors">
+                            Terms & Conditions
                         </Link>
                     </div>
                 </div>
