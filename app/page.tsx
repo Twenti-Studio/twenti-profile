@@ -86,18 +86,18 @@ export default function Home() {
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
           {/* Headline */}
           <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-6">
-            Wujudkan Ide Digital
+            Building Scalable
             <br />
-            <span className="gradient-text">Menjadi Kenyataan</span>
+            <span className="gradient-text">Digital Products</span>
           </h1>
 
           {/* Subheadline */}
-          <p className="text-lg sm:text-xl text-gray-400 max-w-3xl mx-auto mb-10 leading-relaxed">
-            Twenti Studio adalah app studio yang memproduksi berbagai aplikasi inovatif
-            dan menyediakan layanan pengembangan web profesional. Kami membantu bisnis
-            Anda tumbuh dengan solusi digital yang tepat.
-          </p>
+          {/* <p className="text-lg sm:text-xl text-gray-400 max-w-3xl mx-auto mb-10 leading-relaxed">
+            Twenti Studio adalah app studio dan partner teknologi yang membantu bisnis membangun website, aplikasi web, dan produk SaaS yang stabil, terstruktur, dan siap berkembang.
+          </p> */}
 
+          <p className="text-lg sm:text-xl text-gray-400 max-w-3xl mx-auto mb-10 leading-relaxed">
+            Kami merancang solusi digital bukan hanya untuk digunakan hari ini, tetapi untuk mendukung pertumbuhan jangka panjang.          </p>
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
             <Link
@@ -151,18 +151,21 @@ export default function Home() {
                 Studio Pengembangan Aplikasi{' '}
                 <span className="gradient-text">Terpercaya</span>
               </h2>
+              <p className="text-gray-400 text-lg leading-relaxed mb-4">
+                Twenti Studio adalah app studio yang berfokus pada pengembangan produk digital dan aplikasi yang dirancang untuk membantu menyelesaikan permasalahan nyata pengguna.
+              </p>
+              <p className="text-gray-400 text-lg leading-relaxed mb-4">
+                Kami membangun berbagai aplikasi dan solusi digital dengan pendekatan berbasis produk mulai dari perancangan, pengembangan, hingga iterasi berkelanjutan dengan tujuan menciptakan sistem yang fungsional, stabil, dan relevan untuk digunakan dalam jangka panjang.
+              </p>
+
               <p className="text-gray-400 text-lg leading-relaxed mb-6">
-                Twenti Studio adalah app studio yang berfokus pada pembuatan produk-produk
-                aplikasi berkualitas tinggi dan menyediakan layanan pengembangan web yang
-                komprehensif. Dengan tim developer berpengalaman, kami siap membantu
-                mewujudkan visi digital bisnis Anda.
+                Selain mengembangkan produk, Twenti Studio juga menyediakan layanan pengembangan website dan aplikasi bagi bisnis dan organisasi yang membutuhkan partner teknologi dengan pendekatan yang terstruktur dan berorientasi solusi.              
               </p>
               <p className="text-gray-400 text-lg leading-relaxed mb-8">
-                Berbagai produk yang kami kembangkan dapat menjadi solusi siap pakai untuk
-                kebutuhan bisnis Anda, atau kami dapat membangun solusi custom yang sesuai
-                dengan kebutuhan spesifik Anda.
+                Twenti Studio beroperasi di bawah PT Twenti Studio Nusantara. 
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
+                
                 <Link
                   href="/produk"
                   className="inline-flex items-center gap-2 text-orange-500 font-semibold hover:text-orange-400 transition-colors"

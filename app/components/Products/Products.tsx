@@ -77,7 +77,7 @@ const Products = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 {/* Bottom CTA */}
                 <div className="max-w-4xl mx-auto">
-                    <div className="p-8 sm:p-12 bg-dark-800 border border-white/10 rounded-3xl flex flex-col md:flex-row items-center justify-between gap-8">
+                    <div className="p-8 sm:p-12 bg-dark-800 border border-white/10 rounded-3xl flex flex-col md:flex-row items-center justify-between gap-4">
                         <div className="text-center md:text-left">
                             <h3 className="text-2xl font-bold mb-2">Butuh Solusi Custom?</h3>
                             <p className="text-gray-400">
