@@ -4,7 +4,7 @@ import Navbar from "./components/Navbar";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  // title: "Twenti Studio | App Studio & Web Development",
+  metadataBase: new URL("https://twenti.studio"),
   description: "Twenti Studio adalah app studio yang memproduksi aplikasi inovatif dan menyediakan layanan pengembangan web profesional. Solusi digital terbaik untuk bisnis Anda.",
   keywords: ["app studio", "web development", "aplikasi", "software house", "Indonesia", "Balikpapan", "Twenti Studio"],
   authors: [{ name: "Twenti Studio" }],
