@@ -344,10 +344,10 @@ export default function Home() {
               <CheckCircle className="w-5 h-5" />
               <span>Konsultasi Gratis</span>
             </div>
-            <div className="flex items-center gap-2">
+            {/* <div className="flex items-center gap-2">
               <CheckCircle className="w-5 h-5" />
               <span>Respon Cepat</span>
-            </div>
+            </div> */}
             <div className="flex items-center gap-2">
               <CheckCircle className="w-5 h-5" />
               <span>Tim Profesional</span>
