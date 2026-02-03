@@ -68,21 +68,31 @@ const ContactClient = () => {
         setError('');
 
         try {
-            const response = await fetch('/api/contact', {
+            // Send directly to Web3Forms API
+            const response = await fetch('https://api.web3forms.com/submit', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Accept': 'application/json',
                 },
                 body: JSON.stringify({
-                    ...formData,
-                    language,
+                    access_key: '4f64a9d7-9fdf-4f38-802e-1d4e05c6f712',
+                    subject: `[Twenti Studio] New Inquiry: ${formData.service} - ${formData.name}`,
+                    from_name: 'Twenti Studio Website',
+                    name: formData.name,
+                    email: formData.email,
+                    phone: formData.phone,
+                    company: formData.company || '-',
+                    service: formData.service,
+                    project_type: formData.projectType,
+                    message: formData.message,
                 }),
             });
 
             const data = await response.json();
 
-            if (!response.ok) {
-                throw new Error(data.error || 'Failed to send message');
+            if (!data.success) {
+                throw new Error(data.message || 'Failed to send message');
             }
 
             setIsSubmitted(true);
