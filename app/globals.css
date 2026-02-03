@@ -40,6 +40,7 @@ body {
   color: white;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  padding-top: 1.5rem; /* Space for floating navbar */
 }
 
 /* Scrollbar */
@@ -68,54 +69,16 @@ body {
 
 /* Custom Animations */
 @keyframes float {
-
-  0%,
-  100% {
+  0%, 100% {
     transform: translateY(0);
   }
-
   50% {
-    transform: translateY(-20px);
-  }
-}
-
-@keyframes pulse-glow {
-
-  0%,
-  100% {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: 0.8;
-  }
-}
-
-@keyframes gradient-shift {
-  0% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
-
-  100% {
-    background-position: 0% 50%;
+    transform: translateY(-10px);
   }
 }
 
 .animate-float {
   animation: float 6s ease-in-out infinite;
-}
-
-.animate-pulse-glow {
-  animation: pulse-glow 3s ease-in-out infinite;
-}
-
-.animate-gradient {
-  background-size: 200% 200%;
-  animation: gradient-shift 5s ease infinite;
 }
 
 /* Gradient Text - Simplified */
@@ -133,19 +96,39 @@ body {
   border-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Button Gradient - Simplified to solid */
+/* Button Styles - Clean and Professional */
 .btn-gradient {
-  background: #1E4470;
+  background-color: #F08A3C;
   transition: all 0.3s ease;
+  border: none;
 }
 
 .btn-gradient:hover {
+  background-color: #D97423;
   transform: translateY(-2px);
-  background: #2A5A8F;
 }
 
-/* Blur backdrop */
-.backdrop-blur-custom {
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+/* Clean Card Background */
+.product-card-bg {
+  background-color: #16181D;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.product-card-bg:hover {
+  border-color: rgba(240, 138, 60, 0.3);
+}
+
+/* Status badge styling */
+.status-badge {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* FAQ enhancements */
+.faq-item {
+  background-color: #16181D;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.faq-item:hover {
+  border-color: rgba(240, 138, 60, 0.3);
 }

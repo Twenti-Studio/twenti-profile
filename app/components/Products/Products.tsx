@@ -1,15 +1,14 @@
 'use client';
 
 import {
-    ArrowRight,
-    BarChart3,
-    CheckSquare,
-    Users2
+    ArrowRight
 } from 'lucide-react';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
+import { useLanguage } from '../../context/LanguageContext';
 
 const Products = () => {
+    const { language } = useLanguage();
     const [isVisible, setIsVisible] = useState(false);
     const sectionRef = useRef<HTMLElement>(null);
 
@@ -30,35 +29,18 @@ const Products = () => {
         return () => observer.disconnect();
     }, []);
 
-    const products = [
-        {
-            name: 'Twenti Analytics',
-            tagline: 'Data Insights Platform',
-            description: 'Platform analitik bisnis yang powerful untuk melacak, menganalisis, dan memvisualisasikan data Anda secara real-time.',
-            icon: <BarChart3 className="w-8 h-8" />,
-            status: 'Coming Soon',
-            features: ['Dashboard interaktif', 'Laporan otomatis', 'Integrasi API'],
-            color: 'from-blue-500 to-cyan-500',
+    const content = {
+        id: {
+            title: 'Butuh Solusi Custom?',
+            desc: 'Selain produk yang kami kembangkan, tim kami juga siap membantu membangun solusi khusus yang disesuaikan dengan kebutuhan bisnis Anda.',
+            cta: 'Lihat Layanan'
         },
-        {
-            name: 'Twenti CRM',
-            tagline: 'Customer Relationship Manager',
-            description: 'Kelola hubungan pelanggan dengan lebih efektif. Lacak leads, kelola pipeline penjualan, dan tingkatkan retensi pelanggan.',
-            icon: <Users2 className="w-8 h-8" />,
-            status: 'Coming Soon',
-            features: ['Manajemen kontak', 'Pipeline visual', 'Email automation'],
-            color: 'from-emerald-500 to-teal-500',
-        },
-        {
-            name: 'Twenti Tasks',
-            tagline: 'Project Management Tool',
-            description: 'Aplikasi manajemen proyek dan tugas dengan fitur AI untuk prioritisasi otomatis. Kolaborasi tim jadi lebih mudah.',
-            icon: <CheckSquare className="w-8 h-8" />,
-            status: 'Coming Soon',
-            features: ['Kanban board', 'Time tracking', 'Team collaboration'],
-            color: 'from-purple-500 to-indigo-500',
-        },
-    ];
+        en: {
+            title: 'Need a Custom Solution?',
+            desc: 'In addition to our products, our team is also ready to help build custom solutions tailored to your business needs.',
+            cta: 'View Services'
+        }
+    };
 
     return (
         <section
@@ -77,19 +59,18 @@ const Products = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 {/* Bottom CTA */}
                 <div className="max-w-4xl mx-auto">
-                    <div className="p-8 sm:p-12 bg-dark-800 border border-white/10 rounded-3xl flex flex-col md:flex-row items-center justify-between gap-4">
+                    <div className="p-8 sm:p-12 bg-dark-700 border border-white/10 rounded-3xl flex flex-col md:flex-row items-center justify-between gap-6 hover:border-orange-500/30 transition-all duration-300">
                         <div className="text-center md:text-left">
-                            <h3 className="text-2xl font-bold mb-2">Butuh Solusi Custom?</h3>
+                            <h3 className="text-2xl font-bold mb-2">{content[language].title}</h3>
                             <p className="text-gray-400">
-                                Sambil menunggu produk kami rilis, tim kami siap membangun
-                                solusi khusus yang disesuaikan dengan kebutuhan bisnis Anda.
+                                {content[language].desc}
                             </p>
                         </div>
                         <Link 
                             href="/layanan" 
-                            className="whitespace-nowrap inline-flex items-center gap-2 px-8 py-4 btn-gradient text-white font-bold rounded-full transition-transform hover:scale-105"
+                            className="whitespace-nowrap inline-flex items-center gap-2 px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-full transition-colors duration-300"
                         >
-                            <span>Lihat Layanan Custom</span>
+                            <span>{content[language].cta}</span>
                             <ArrowRight className="w-5 h-5" />
                         </Link>
                     </div>

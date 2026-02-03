@@ -14,73 +14,115 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
+import { useLanguage } from '../context/LanguageContext';
 
 const ServicesClient = () => {
+    const { t, language } = useLanguage();
     const [activeStep, setActiveStep] = useState(0);
 
     const services = [
         {
             id: 'web-development',
-            title: 'Web Development',
-            tagline: 'Website Modern & Responsif',
-            description: 'Membangun website profesional dengan teknologi terkini. Dari landing page hingga web application kompleks, kami siap membantu mewujudkan kebutuhan digital bisnis Anda.',
+            titleKey: 'services.webDev.title',
+            taglineKey: 'services.webDev.tagline',
+            descKey: 'services.webDev.desc',
             icon: <Laptop className="w-10 h-10" />,
-            features: [
-                'Website Company Profile',
-                'Landing Page & Marketing Site',
-                'E-Commerce Platform',
-                'Web Application (SaaS)',
-                'Portal & Dashboard',
-                'Blog & Content Platform',
-            ],
+            features: {
+                id: [
+                    'Website Company Profile',
+                    'Landing Page & Marketing Site',
+                    'E-Commerce Platform',
+                    'Web Application (SaaS)',
+                    'Portal & Dashboard',
+                    'Blog & Content Platform',
+                ],
+                en: [
+                    'Company Profile Website',
+                    'Landing Page & Marketing Site',
+                    'E-Commerce Platform',
+                    'Web Application (SaaS)',
+                    'Portal & Dashboard',
+                    'Blog & Content Platform',
+                ]
+            },
             technologies: ['React', 'Next.js', 'Vue.js', 'Node.js', 'Laravel', 'PostgreSQL'],
         },
         {
             id: 'mobile-app',
-            title: 'Mobile App Development',
-            tagline: 'Aplikasi iOS & Android',
-            description: 'Mengembangkan aplikasi mobile cross-platform dengan performa native. Desain yang intuitif dan user experience yang optimal untuk pengguna Anda.',
+            titleKey: 'services.mobile.title',
+            taglineKey: 'services.mobile.tagline',
+            descKey: 'services.mobile.desc',
             icon: <Smartphone className="w-10 h-10" />,
-            features: [
-                'Native iOS & Android App',
-                'Cross-Platform (React Native/Flutter)',
-                'Progressive Web App (PWA)',
-                'App Store Optimization',
-                'Push Notifications',
-                'Offline Functionality',
-            ],
+            features: {
+                id: [
+                    'Native iOS & Android App',
+                    'Cross-Platform (React Native/Flutter)',
+                    'Progressive Web App (PWA)',
+                    'App Store Optimization',
+                    'Push Notifications',
+                    'Offline Functionality',
+                ],
+                en: [
+                    'Native iOS & Android App',
+                    'Cross-Platform (React Native/Flutter)',
+                    'Progressive Web App (PWA)',
+                    'App Store Optimization',
+                    'Push Notifications',
+                    'Offline Functionality',
+                ]
+            },
             technologies: ['React Native', 'Flutter', 'Swift', 'Kotlin', 'Firebase', 'AWS'],
         },
         {
             id: 'design',
-            title: 'UI/UX Design',
-            tagline: 'Desain yang Memikat',
-            description: 'Menciptakan desain antarmuka yang tidak hanya cantik tetapi juga fungsional. Fokus pada user experience untuk meningkatkan engagement dan konversi.',
+            titleKey: 'services.design.title',
+            taglineKey: 'services.design.tagline',
+            descKey: 'services.design.desc',
             icon: <Palette className="w-10 h-10" />,
-            features: [
-                'User Research & Analysis',
-                'Wireframing & Prototyping',
-                'Visual Design System',
-                'Interaction Design',
-                'Usability Testing',
-                'Design Handoff',
-            ],
+            features: {
+                id: [
+                    'User Research & Analysis',
+                    'Wireframing & Prototyping',
+                    'Visual Design System',
+                    'Interaction Design',
+                    'Usability Testing',
+                    'Design Handoff',
+                ],
+                en: [
+                    'User Research & Analysis',
+                    'Wireframing & Prototyping',
+                    'Visual Design System',
+                    'Interaction Design',
+                    'Usability Testing',
+                    'Design Handoff',
+                ]
+            },
             technologies: ['Figma', 'Adobe XD', 'Sketch', 'Principle', 'Framer', 'InVision'],
         },
         {
             id: 'konsultasi',
-            title: 'Konsultasi Teknologi',
-            tagline: 'Strategi Digital yang Tepat',
-            description: 'Memberikan panduan strategis untuk transformasi digital bisnis Anda. Analisis kebutuhan, rekomendasi teknologi, dan roadmap pengembangan.',
+            titleKey: 'services.consulting.title',
+            taglineKey: 'services.consulting.tagline',
+            descKey: 'services.consulting.desc',
             icon: <Lightbulb className="w-10 h-10" />,
-            features: [
-                'Technology Assessment',
-                'Digital Strategy Planning',
-                'Architecture Design',
-                'Security Audit',
-                'Performance Optimization',
-                'Team Mentoring',
-            ],
+            features: {
+                id: [
+                    'Technology Assessment',
+                    'Digital Strategy Planning',
+                    'Architecture Design',
+                    'Security Audit',
+                    'Performance Optimization',
+                    'Team Mentoring',
+                ],
+                en: [
+                    'Technology Assessment',
+                    'Digital Strategy Planning',
+                    'Architecture Design',
+                    'Security Audit',
+                    'Performance Optimization',
+                    'Team Mentoring',
+                ]
+            },
             technologies: ['Cloud Architecture', 'DevOps', 'Security', 'Scalability', 'CI/CD', 'Microservices'],
         },
     ];
@@ -88,83 +130,47 @@ const ServicesClient = () => {
     const processSteps = [
         {
             number: '01',
-            title: 'Discovery',
+            titleKey: 'services.process.step1.title',
             icon: <Search className="w-6 h-6" />,
-            description: 'Kami memulai dengan mendengarkan kebutuhan Anda secara mendalam.',
-            duration: '1-2 Hari',
-            deliverables: ['Project Brief', 'Requirement Document', 'Timeline Estimasi'],
+            descKey: 'services.process.step1.desc',
+            durationKey: 'services.process.step1.duration',
+            deliverables: {
+                id: ['Project Brief', 'Requirement Document', 'Timeline Estimasi'],
+                en: ['Project Brief', 'Requirement Document', 'Timeline Estimate'],
+            },
         },
         {
             number: '02',
-            title: 'Perencanaan',
+            titleKey: 'services.process.step2.title',
             icon: <PenTool className="w-6 h-6" />,
-            description: 'Tim kami menyusun strategi dan membuat desain wireframe serta prototype.',
-            duration: '1-2 Minggu',
-            deliverables: ['Wireframes', 'UI Design', 'Interactive Prototype'],
+            descKey: 'services.process.step2.desc',
+            durationKey: 'services.process.step2.duration',
+            deliverables: {
+                id: ['Wireframes', 'UI Design', 'Interactive Prototype'],
+                en: ['Wireframes', 'UI Design', 'Interactive Prototype'],
+            },
         },
         {
             number: '03',
-            title: 'Development',
+            titleKey: 'services.process.step3.title',
             icon: <Code2 className="w-6 h-6" />,
-            description: 'Proses pengembangan dengan metodologi agile dan testing berkelanjutan.',
-            duration: '4-12 Minggu',
-            deliverables: ['Working Application', 'Quality Assurance', 'Bug Fixes'],
+            descKey: 'services.process.step3.desc',
+            durationKey: 'services.process.step3.duration',
+            deliverables: {
+                id: ['Working Application', 'Quality Assurance', 'Bug Fixes'],
+                en: ['Working Application', 'Quality Assurance', 'Bug Fixes'],
+            },
         },
         {
             number: '04',
-            title: 'Launch',
+            titleKey: 'services.process.step4.title',
             icon: <Rocket className="w-6 h-6" />,
-            description: 'Peluncuran produk dengan persiapan matang dan dukungan post-launch.',
-            duration: 'Ongoing',
-            deliverables: ['Deployment', 'Documentation', 'Technical Support'],
-        },
-    ];
-
-    const pricingPlans = [
-        {
-            name: 'Starter',
-            description: 'Cocok untuk bisnis kecil atau startup',
-            price: 'Mulai dari',
-            amount: '5 Juta',
-            features: [
-                'Landing Page / Company Profile',
-                'Desain responsif',
-                '5 halaman',
-                'Contact form',
-                'SEO basic',
-                'Support 1 bulan',
-            ],
-            highlighted: false,
-        },
-        {
-            name: 'Professional',
-            description: 'Untuk bisnis yang membutuhkan lebih',
-            price: 'Mulai dari',
-            amount: '15 Juta',
-            features: [
-                'Web Application Custom',
-                'Desain UI/UX premium',
-                'Dashboard admin',
-                'Database integration',
-                'API development',
-                'Support 3 bulan',
-            ],
-            highlighted: true,
-        },
-        {
-            name: 'Enterprise',
-            description: 'Solusi lengkap untuk perusahaan besar',
-            price: 'Custom',
-            amount: 'Quote',
-            features: [
-                'Full-stack development',
-                'Mobile app development',
-                'Complex integrations',
-                'Scalable architecture',
-                'Priority support',
-                'Dedicated team',
-            ],
-            highlighted: false,
+            descKey: 'services.process.step4.desc',
+            durationKey: 'services.process.step4.duration',
+            deliverables: {
+                id: ['Deployment', 'Documentation', 'Technical Support'],
+                en: ['Deployment', 'Documentation', 'Technical Support'],
+            },
         },
     ];
 
@@ -174,13 +180,12 @@ const ServicesClient = () => {
             <section className="pt-32 pb-16 bg-dark-900 relative overflow-hidden">
                 <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
-                        Layanan Pengembangan{' '}
-                        <span className="gradient-text">Web & Aplikasi</span>
+                        {t('services.heroTitle')}{' '}
+                        <span className="text-orange-500">{t('services.heroHighlight')}</span>
                     </h1>
 
                     <p className="text-lg sm:text-xl text-gray-400 max-w-3xl mx-auto">
-                        Tim profesional kami siap membantu mewujudkan visi digital bisnis Anda.
-                        Dari perencanaan hingga deployment, kami handle semuanya.
+                        {t('services.heroSubtitle')}
                     </p>
                 </div>
             </section>
@@ -196,30 +201,30 @@ const ServicesClient = () => {
                                 className="group p-8 bg-dark-700 border border-white/5 rounded-2xl card-hover"
                             >
                                 <div className="flex items-start gap-5 mb-6">
-                                    <div className="w-16 h-16 flex-shrink-0 flex items-center justify-center bg-gradient-to-br from-navy-700/30 to-orange-500/30 rounded-xl text-orange-500 group-hover:scale-110 transition-transform duration-300">
+                                    <div className="w-16 h-16 shrink-0 flex items-center justify-center bg-dark-600 rounded-xl text-orange-500 group-hover:scale-110 transition-transform duration-300">
                                         {service.icon}
                                     </div>
                                     <div>
                                         <h3 className="text-2xl font-bold mb-1 group-hover:text-orange-500 transition-colors">
-                                            {service.title}
+                                            {t(service.titleKey)}
                                         </h3>
-                                        <p className="text-sm text-orange-500 font-medium">{service.tagline}</p>
+                                        <p className="text-sm text-orange-500 font-medium">{t(service.taglineKey)}</p>
                                     </div>
                                 </div>
 
                                 <p className="text-gray-400 leading-relaxed mb-6">
-                                    {service.description}
+                                    {t(service.descKey)}
                                 </p>
 
                                 {/* Features */}
                                 <div className="mb-6">
                                     <h4 className="text-sm font-semibold text-gray-300 uppercase tracking-wider mb-3">
-                                        Yang Termasuk:
+                                        {t('services.includes')}
                                     </h4>
                                     <ul className="grid grid-cols-2 gap-2">
-                                        {service.features.map((feature) => (
+                                        {service.features[language].map((feature) => (
                                             <li key={feature} className="flex items-start gap-2 text-sm text-gray-400">
-                                                <CheckCircle2 className="w-4 h-4 text-orange-500 mt-0.5 flex-shrink-0" />
+                                                <CheckCircle2 className="w-4 h-4 text-orange-500 mt-0.5 shrink-0" />
                                                 <span>{feature}</span>
                                             </li>
                                         ))}
@@ -249,22 +254,21 @@ const ServicesClient = () => {
                     {/* Header */}
                     <div className="text-center max-w-3xl mx-auto mb-16">
                         <span className="text-sm font-semibold text-orange-500 uppercase tracking-wider">
-                            Alur Kerja
+                            {t('services.process.label')}
                         </span>
                         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mt-4 mb-6">
-                            Bagaimana Kami{' '}
-                            <span className="gradient-text">Bekerja</span>
+                            {t('services.process.title')}{' '}
+                            <span className="text-orange-500">{t('services.process.titleHighlight')}</span>
                         </h2>
                         <p className="text-gray-400 text-lg">
-                            Proses yang terstruktur dan transparan untuk memastikan proyek
-                            Anda berjalan lancar dari awal hingga akhir.
+                            {t('services.process.subtitle')}
                         </p>
                     </div>
 
                     {/* Process Steps */}
                     <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
                         <div className="hidden lg:block absolute top-12 left-[10%] right-[10%] h-0.5 bg-dark-600 z-0">
-                            <div className="h-full bg-gradient-to-r from-navy-700 to-orange-500 transition-all duration-700" style={{ width: `${(activeStep / 3) * 100}%` }} />
+                            <div className="h-full bg-orange-500 transition-all duration-700" style={{ width: `${(activeStep / 3) * 100}%` }} />
                         </div>
 
                         {processSteps.map((step, index) => (
@@ -279,14 +283,14 @@ const ServicesClient = () => {
                                     {step.icon}
                                 </div>
                                 <div className="inline-block px-3 py-1 bg-orange-500/10 text-orange-500 text-xs font-semibold rounded-full mb-3">
-                                    {step.number} | {step.duration}
+                                    {step.number} | {t(step.durationKey)}
                                 </div>
-                                <h3 className="text-xl font-bold mb-3">{step.title}</h3>
+                                <h3 className="text-xl font-bold mb-3">{t(step.titleKey)}</h3>
                                 <p className="text-gray-400 text-sm leading-relaxed mb-4">
-                                    {step.description}
+                                    {t(step.descKey)}
                                 </p>
                                 <ul className="space-y-1">
-                                    {step.deliverables.map((item) => (
+                                    {step.deliverables[language].map((item) => (
                                         <li key={item} className="text-xs text-gray-500 flex items-center justify-center gap-1">
                                             <CheckCircle2 className="w-3 h-3 text-orange-500/50" />
                                             <span>{item}</span>
@@ -299,29 +303,21 @@ const ServicesClient = () => {
                 </div>
             </section>
 
-            {/* Pricing Section (HIDDEN/COMMENTED OUT BY PREVIOUS REQUEST) */}
-            {/* 
-      <section className="py-24 bg-dark-800">
-        ... (omitted content as it's commented out)
-      </section> 
-      */}
-
             {/* CTA Section */}
-            <section className="py-24 bg-dark-900">
+            <section className="py-24 bg-dark-800">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <div className="p-12 bg-gradient-to-br from-navy-700/30 to-orange-500/20 border border-white/10 rounded-3xl">
+                    <div className="p-12 bg-dark-700 border border-white/10 rounded-3xl">
                         <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-                            Siap Memulai Proyek Anda?
+                            {t('services.cta.title')}
                         </h2>
                         <p className="text-gray-400 text-lg mb-8 max-w-2xl mx-auto">
-                            Ceritakan kebutuhan Anda kepada kami. Konsultasi pertama gratis tanpa
-                            komitmen. Tim kami siap membantu mewujudkan visi digital Anda.
+                            {t('services.cta.subtitle')}
                         </p>
                         <Link
                             href="/kontak"
-                            className="inline-flex items-center gap-2 px-8 py-4 btn-gradient text-white font-semibold rounded-full transition-transform hover:scale-105"
+                            className="inline-flex items-center gap-2 px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-full transition-colors duration-300"
                         >
-                            <span>Hubungi Kami Sekarang</span>
+                            <span>{t('services.cta.button')}</span>
                             <ArrowRight className="w-5 h-5" />
                         </Link>
                     </div>
