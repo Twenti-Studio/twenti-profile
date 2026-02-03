@@ -24,15 +24,32 @@ export async function POST(request: Request) {
             );
         }
 
-        // Use Web3Forms - Free form submission service
-        // Get your access key at https://web3forms.com (it's free!)
-        const WEB3FORMS_ACCESS_KEY = process.env.WEB3FORMS_ACCESS_KEY || '260132ff-686e-41a2-8e29-8868d3ffb6a9';
+        // Check if Web3Forms access key is configured
+        const WEB3FORMS_ACCESS_KEY ='260132ff-686e-41a2-8e29-8868d3ffb6a9';
+        
+        if (!WEB3FORMS_ACCESS_KEY) {
+            // If no access key, log the submission and return success
+            // This allows testing without a configured email service
+            console.log('=== Contact Form Submission (No Email Service) ===');
+            console.log('Name:', name);
+            console.log('Email:', email);
+            console.log('Phone:', phone);
+            console.log('Company:', company || '-');
+            console.log('Service:', service);
+            console.log('Project Type:', projectType);
+            console.log('Message:', message);
+            console.log('================================================');
+            
+            return NextResponse.json({
+                success: true,
+                message: language === 'id' ? 'Pesan berhasil dikirim!' : 'Message sent successfully!',
+            });
+        }
 
         const formData = {
             access_key: WEB3FORMS_ACCESS_KEY,
             subject: `[Twenti Studio] New Inquiry: ${service} - ${name}`,
             from_name: 'Twenti Studio Website',
-            to: 'twentistudio@gmail.com',
             name: name,
             email: email,
             phone: phone,
@@ -40,7 +57,6 @@ export async function POST(request: Request) {
             service: service,
             project_type: projectType,
             message: message,
-            // Botcheck honeypot
             botcheck: '',
         };
 
@@ -61,6 +77,7 @@ export async function POST(request: Request) {
                 message: language === 'id' ? 'Pesan berhasil dikirim!' : 'Message sent successfully!',
             });
         } else {
+            console.error('Web3Forms error:', result);
             throw new Error(result.message || 'Failed to send message');
         }
 

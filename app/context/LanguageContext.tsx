@@ -393,26 +393,23 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-// Get initial language safely for SSR
-const getStoredLanguage = (): Language => {
-    if (typeof window !== 'undefined') {
-        const saved = localStorage.getItem('language') as Language;
-        if (saved && (saved === 'id' || saved === 'en')) {
-            return saved;
-        }
-    }
-    return 'id';
-};
-
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
-    const [language, setLanguageState] = useState<Language>(() => getStoredLanguage());
+    // Always start with 'id' to match server render and avoid hydration mismatch
+    const [language, setLanguageState] = useState<Language>('id');
     const [isHydrated, setIsHydrated] = useState(false);
 
-    // Mark as hydrated after mount
+    // Load saved language from localStorage AFTER component mounts
+    // Using useEffect with a callback to avoid React Compiler warning
     useEffect(() => {
-        queueMicrotask(() => {
+        const loadLanguage = () => {
+            const saved = localStorage.getItem('language') as Language;
+            if (saved && (saved === 'id' || saved === 'en')) {
+                setLanguageState(saved);
+            }
             setIsHydrated(true);
-        });
+        };
+        // Use requestAnimationFrame to defer state updates
+        requestAnimationFrame(loadLanguage);
     }, []);
 
     const handleSetLanguage = (lang: Language) => {
