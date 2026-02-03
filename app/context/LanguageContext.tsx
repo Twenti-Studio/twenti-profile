@@ -182,7 +182,7 @@ export const translations: Translations = {
     'products.viewServices': { id: 'Lihat Layanan', en: 'View Services' },
     'products.contactUs': { id: 'Hubungi Kami', en: 'Contact Us' },
     'products.available': { id: 'Tersedia', en: 'Available' },
-    'products.beta': { id: 'Beta', en: 'Beta' },
+    'products.development': { id: 'Pengembangan', en: 'Development' },
     'products.comingSoon': { id: 'Segera Hadir', en: 'Coming Soon' },
 
     

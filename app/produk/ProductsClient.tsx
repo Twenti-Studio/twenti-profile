@@ -33,7 +33,7 @@ interface Product {
     name: string;
     description: { id: string; en: string };
     category: string;
-    status: 'coming-soon' | 'available' | 'beta';
+    status: 'coming-soon' | 'available' | 'development';
     link: string;
     isExternal: boolean;
     gradient: string;
@@ -52,7 +52,7 @@ const products: Product[] = [
         link: 'https://games.twenti.studio',
         isExternal: true,
         gradient: 'from-blue-500 to-cyan-500',
-        image: '/image/games-twenti.png'
+        image: '/image/games.png'
     },
     {
         name: 'Mita | Mikro Task',
@@ -61,12 +61,13 @@ const products: Product[] = [
             en: 'A micro tasking platform that provides simple tasks for users to complete with certain rewards.'
         },
         category: 'Task Platform',
-        status: 'beta',
+        status: 'development',
         link: 'https://mita.twenti.studio/',
         isExternal: true,
         gradient: 'from-orange-500 to-pink-500',
-        image: '/image/mita.png'
+        image: '/image/mita-test.png'
     },
+    
 ];
 
 const ProductsClient = () => {
@@ -172,8 +173,8 @@ const ProductCard = ({ product, language, t }: ProductCardProps) => {
             labelKey: 'products.available',
             color: 'bg-green-500',
         },
-        'beta': {
-            labelKey: 'products.beta',
+        'development': {
+            labelKey: 'products.development',
             color: 'bg-blue-500',
         },
         'coming-soon': {
