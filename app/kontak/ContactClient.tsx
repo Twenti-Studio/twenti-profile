@@ -68,7 +68,7 @@ const ContactClient = () => {
         setError('');
 
         try {
-            const response = await fetch('/api/contact', {
+            const response = await fetch('/kontak', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
