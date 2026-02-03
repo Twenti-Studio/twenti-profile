@@ -13,9 +13,9 @@ interface Translations {
 
 // All translations - Professional copywriting for Twenti Studio
 export const translations: Translations = {
-    // =============================================
+    
     // NAVBAR
-    // =============================================
+    
     'nav.home': { id: 'Beranda', en: 'Home' },
     'nav.about': { id: 'Tentang', en: 'About' },
     'nav.products': { id: 'Produk', en: 'Products' },
@@ -23,9 +23,9 @@ export const translations: Translations = {
     'nav.contact': { id: 'Kontak', en: 'Contact' },
     'nav.startProject': { id: 'Mulai Proyek', en: 'Start Project' },
 
-    // =============================================
+    
     // HOME PAGE - HERO
-    // =============================================
+    
     'home.hero.title1': { id: 'Membangun Aplikasi', en: 'Building Apps' },
     'home.hero.title2': { id: 'yang Menyelesaikan Masalah', en: 'That Solve Problems' },
     'home.hero.subtitle': { 
@@ -35,9 +35,9 @@ export const translations: Translations = {
     'home.hero.cta1': { id: 'Lihat Produk', en: 'View Products' },
     'home.hero.cta2': { id: 'Jelajahi Layanan', en: 'Explore Services' },
 
-    // =============================================
+    
     // HOME PAGE - ABOUT SECTION
-    // =============================================
+    
     'home.about.label': { id: 'Tentang Kami', en: 'About Us' },
     'home.about.title': { id: 'App Studio', en: 'App Studio' },
     'home.about.titleHighlight': { id: 'Berbasis Solusi', en: 'Solution-Based' },
@@ -59,11 +59,11 @@ export const translations: Translations = {
     },
     'home.about.viewProducts': { id: 'Lihat Produk', en: 'View Products' },
     'home.about.learnServices': { id: 'Pelajari Layanan', en: 'Learn Services' },
-    'home.about.tagline': { id: 'Building Digital Excellence', en: 'Building Digital Excellence' },
+    'home.about.tagline': { id: 'Membangun Produk Unggulan', en: 'Building Product Excellence' },
 
-    // =============================================
+    
     // HOME PAGE - FEATURES SECTION
-    // =============================================
+    
     'home.features.label': { id: 'Apa yang Kami Tawarkan', en: 'What We Offer' },
     'home.features.title': { id: 'Solusi Digital', en: 'Digital Solutions' },
     'home.features.titleHighlight': { id: 'Lengkap', en: 'Complete' },
@@ -93,20 +93,19 @@ export const translations: Translations = {
     },
     'home.features.viewAllServices': { id: 'Lihat Semua Layanan', en: 'View All Services' },
 
-    // =============================================
+    
     // HOME PAGE - TESTIMONIALS
-    // =============================================
     'home.testimonials.label': { id: 'Testimonial', en: 'Testimonials' },
     'home.testimonials.title': { id: 'Apa Kata', en: 'What Our' },
-    'home.testimonials.titleHighlight': { id: 'Klien Kami', en: 'Clients Say' },
+    'home.testimonials.titleHighlight': { id: 'Klien Kami', en: 'Clients Said' },
     'home.testimonials.subtitle': { 
         id: 'Kepuasan klien adalah prioritas utama kami. Berikut adalah beberapa testimoni dari klien yang telah bekerja sama dengan kami.', 
         en: 'Client satisfaction is our top priority. Here are some testimonials from clients who have worked with us.' 
     },
 
-    // =============================================
+    
     // HOME PAGE - FAQ
-    // =============================================
+    
     'home.faq.label': { id: 'FAQ', en: 'FAQ' },
     'home.faq.title': { id: 'Pertanyaan yang', en: 'Frequently' },
     'home.faq.titleHighlight': { id: 'Sering Diajukan', en: 'Asked Questions' },
@@ -148,9 +147,9 @@ export const translations: Translations = {
         en: 'All applications we build use modern architecture that is easy to scale. We use technologies like cloud services and best practices that ensure your application is ready to grow along with your business.' 
     },
 
-    // =============================================
+    
     // HOME PAGE - CTA
-    // =============================================
+    
     'home.cta.title': { id: 'Siap Memulai Proyek Digital Anda?', en: 'Ready to Start Your Digital Project?' },
     'home.cta.subtitle': { 
         id: 'Hubungi kami sekarang untuk konsultasi gratis. Kami siap membantu mewujudkan visi digital bisnis Anda.', 
@@ -161,9 +160,9 @@ export const translations: Translations = {
     'home.cta.freeConsultation': { id: 'Konsultasi Gratis', en: 'Free Consultation' },
     'home.cta.professionalTeam': { id: 'Tim Profesional', en: 'Professional Team' },
 
-    // =============================================
+    
     // PRODUCTS PAGE
-    // =============================================
+    
     'products.title': { id: 'Kami', en: 'Products' },
     'products.titlePrefix': { id: 'Produk', en: 'Our' },
     'products.subtitle': { 
@@ -186,9 +185,9 @@ export const translations: Translations = {
     'products.beta': { id: 'Beta', en: 'Beta' },
     'products.comingSoon': { id: 'Segera Hadir', en: 'Coming Soon' },
 
-    // =============================================
+    
     // SERVICES PAGE
-    // =============================================
+    
     'services.heroTitle': { id: 'Layanan Pengembangan', en: 'Development Services' },
     'services.heroHighlight': { id: 'Software & Aplikasi', en: 'Software & Applications' },
     'services.heroSubtitle': { 
@@ -252,9 +251,9 @@ export const translations: Translations = {
     },
     'services.cta.button': { id: 'Hubungi Kami Sekarang', en: 'Contact Us Now' },
 
-    // =============================================
+    
     // CONTACT PAGE
-    // =============================================
+    
     'contact.title': { id: 'Mari Wujudkan', en: "Let's Realize" },
     'contact.titleHighlight': { id: 'Proyek Anda', en: 'Your Project' },
     'contact.subtitle': { 
@@ -306,9 +305,9 @@ export const translations: Translations = {
     'contact.projectType.consultation': { id: 'Konsultasi', en: 'Consultation' },
     'contact.projectType.other': { id: 'Lainnya', en: 'Other' },
 
-    // =============================================
+    
     // ABOUT PAGE
-    // =============================================
+    
     'about.hero.title1': { id: 'Tentang', en: 'About' },
     'about.hero.title2': { id: 'Twenti Studio', en: 'Twenti Studio' },
     'about.hero.subtitle': { 
@@ -353,9 +352,9 @@ export const translations: Translations = {
     'about.cta.contact': { id: 'Hubungi Kami', en: 'Get in Touch' },
     'about.cta.interdots': { id: 'Interdots Group', en: 'Interdots Group' },
 
-    // =============================================
+    
     // FOOTER
-    // =============================================
+    
     'footer.description': { 
         id: 'App studio yang mengembangkan aplikasi untuk menyelesaikan masalah dan menyediakan layanan pengembangan software profesional.', 
         en: 'App studio that develops applications to solve problems and provides professional software development services.' 
@@ -373,9 +372,9 @@ export const translations: Translations = {
     'footer.privacy': { id: 'Kebijakan Privasi', en: 'Privacy Policy' },
     'footer.terms': { id: 'Syarat & Ketentuan', en: 'Terms & Conditions' },
 
-    // =============================================
+    
     // COMMON / SHARED
-    // =============================================
+    
     'common.viewAll': { id: 'Lihat Semua', en: 'View All' },
     'common.learnMore': { id: 'Pelajari Lebih Lanjut', en: 'Learn More' },
     'common.getStarted': { id: 'Mulai Sekarang', en: 'Get Started' },

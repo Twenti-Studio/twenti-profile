@@ -11,7 +11,7 @@ import Link from 'next/link';
 import { useLanguage } from '../context/LanguageContext';
 
 const Footer = () => {
-    const { t } = useLanguage();
+    const { t, isHydrated } = useLanguage();
     const currentYear = new Date().getFullYear();
 
     const socialLinks = [
@@ -21,6 +21,21 @@ const Footer = () => {
             icon: <Github className="w-5 h-5" />,
         },
     ];
+
+    // Don't render until hydrated to prevent hydration mismatch
+    if (!isHydrated) {
+        return (
+            <footer className="bg-dark-800 border-t border-white/10">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                    <div className="animate-pulse">
+                        <div className="h-8 bg-dark-700 rounded w-32 mb-4" />
+                        <div className="h-4 bg-dark-700 rounded w-48 mb-2" />
+                        <div className="h-4 bg-dark-700 rounded w-40" />
+                    </div>
+                </div>
+            </footer>
+        );
+    }
 
     return (
         <footer className="bg-dark-800 border-t border-white/10">

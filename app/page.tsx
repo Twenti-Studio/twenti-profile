@@ -1,21 +1,36 @@
 'use client';
 
 import {
-    ArrowRight,
-    CheckCircle,
-    Laptop,
-    Layout,
-    Palette,
-    Smartphone,
-    Star
+  ArrowRight,
+  CheckCircle,
+  Laptop,
+  Layout,
+  Palette,
+  Smartphone,
+  Star
 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import Products from './components/Products/Products';
 import { useLanguage } from './context/LanguageContext';
 
+// Loading skeleton for hydration
+const LoadingSkeleton = () => (
+  <div className="min-h-screen bg-dark-900 flex items-center justify-center">
+    <div className="text-center">
+      <div className="w-12 h-12 border-2 border-orange-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+      <div className="w-48 h-4 bg-dark-700 rounded animate-pulse mx-auto" />
+    </div>
+  </div>
+);
+
 export default function Home() {
-  const { t, language } = useLanguage();
+  const { t, language, isHydrated } = useLanguage();
+
+  // Show loading skeleton until hydrated to prevent hydration mismatch
+  if (!isHydrated) {
+    return <LoadingSkeleton />;
+  }
 
   const features = [
     {

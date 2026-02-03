@@ -4,6 +4,16 @@ import { ArrowRight, ExternalLink } from 'lucide-react';
 import Link from 'next/link';
 import { useLanguage } from '../context/LanguageContext';
 
+// Loading skeleton for hydration
+const LoadingSkeleton = () => (
+  <div className="min-h-screen bg-dark-900 flex items-center justify-center">
+    <div className="text-center">
+      <div className="w-12 h-12 border-2 border-orange-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+      <div className="w-48 h-4 bg-dark-700 rounded animate-pulse mx-auto" />
+    </div>
+  </div>
+);
+
 // ============================================
 // TEMPLATE: CARA MENAMBAH PRODUK BARU
 // ============================================
@@ -60,7 +70,12 @@ const products: Product[] = [
 ];
 
 const ProductsClient = () => {
-    const { t, language } = useLanguage();
+    const { t, language, isHydrated } = useLanguage();
+
+    // Show loading skeleton until hydrated to prevent hydration mismatch
+    if (!isHydrated) {
+        return <LoadingSkeleton />;
+    }
 
     return (
         <>

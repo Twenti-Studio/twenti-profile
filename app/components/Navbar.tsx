@@ -22,9 +22,7 @@ const Navbar = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    useEffect(() => {
-        setIsMobileMenuOpen(false);
-    }, [pathname]);
+    const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
     // Static nav links - translation happens on render
     const navLinks = [
@@ -165,6 +163,7 @@ const Navbar = () => {
                             <Link
                                 key={link.href}
                                 href={link.href}
+                                onClick={closeMobileMenu}
                                 className={`block text-xl font-semibold py-3 px-6 rounded-lg transition-all duration-300 ${isActive(link.href)
                                         ? 'text-orange-500 bg-orange-500/10'
                                         : 'text-gray-400 hover:text-white hover:bg-white/10'
@@ -185,6 +184,7 @@ const Navbar = () => {
                         
                         <Link
                             href="/kontak"
+                            onClick={closeMobileMenu}
                             className="block mt-4 px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white text-lg font-semibold rounded-full text-center transition-colors"
                         >
                             {t('nav.startProject')}

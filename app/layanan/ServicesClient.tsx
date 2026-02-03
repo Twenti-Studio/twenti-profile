@@ -17,7 +17,7 @@ import { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 
 const ServicesClient = () => {
-    const { t, language } = useLanguage();
+    const { t, language, isHydrated } = useLanguage();
     const [activeStep, setActiveStep] = useState(0);
 
     const services = [
@@ -173,6 +173,18 @@ const ServicesClient = () => {
             },
         },
     ];
+
+    // Show loading skeleton until hydrated to prevent hydration mismatch
+    if (!isHydrated) {
+        return (
+            <div className="min-h-screen bg-dark-900 flex items-center justify-center">
+                <div className="text-center">
+                    <div className="w-12 h-12 border-2 border-orange-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+                    <div className="w-48 h-4 bg-dark-700 rounded animate-pulse mx-auto" />
+                </div>
+            </div>
+        );
+    }
 
     return (
         <>

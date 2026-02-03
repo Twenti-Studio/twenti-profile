@@ -8,7 +8,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useLanguage } from '../../context/LanguageContext';
 
 const Products = () => {
-    const { language } = useLanguage();
+    const { language, isHydrated } = useLanguage();
     const [isVisible, setIsVisible] = useState(false);
     const sectionRef = useRef<HTMLElement>(null);
 
@@ -42,6 +42,9 @@ const Products = () => {
         }
     };
 
+    // Use default language until hydrated to prevent mismatch
+    const currentLang = isHydrated ? language : 'id';
+
     return (
         <section
             id="products"
@@ -61,16 +64,16 @@ const Products = () => {
                 <div className="max-w-4xl mx-auto">
                     <div className="p-8 sm:p-12 bg-dark-700 border border-white/10 rounded-3xl flex flex-col md:flex-row items-center justify-between gap-6 hover:border-orange-500/30 transition-all duration-300">
                         <div className="text-center md:text-left">
-                            <h3 className="text-2xl font-bold mb-2">{content[language].title}</h3>
+                            <h3 className="text-2xl font-bold mb-2">{content[currentLang].title}</h3>
                             <p className="text-gray-400">
-                                {content[language].desc}
+                                {content[currentLang].desc}
                             </p>
                         </div>
                         <Link 
                             href="/layanan" 
                             className="whitespace-nowrap inline-flex items-center gap-2 px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-full transition-colors duration-300"
                         >
-                            <span>{content[language].cta}</span>
+                            <span>{content[currentLang].cta}</span>
                             <ArrowRight className="w-5 h-5" />
                         </Link>
                     </div>
