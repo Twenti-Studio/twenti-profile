@@ -50,6 +50,8 @@ export async function POST(request: Request) {
             access_key: WEB3FORMS_ACCESS_KEY,
             subject: `[Twenti Studio] New Inquiry: ${service} - ${name}`,
             from_name: 'Twenti Studio Website',
+            // Add the registered page URL for Web3Forms verification
+            redirect: 'https://twenti.studio/kontak',
             name: name,
             email: email,
             phone: phone,
