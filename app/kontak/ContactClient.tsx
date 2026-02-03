@@ -76,7 +76,7 @@ const ContactClient = () => {
                     'Accept': 'application/json',
                 },
                 body: JSON.stringify({
-                    access_key: '4f64a9d7-9fdf-4f38-802e-1d4e05c6f712',
+                    access_key: '773f8242-1ab8-4d0d-96d5-f7fff008b31e',
                     subject: `[Twenti Studio] New Inquiry: ${formData.service} - ${formData.name}`,
                     from_name: 'Twenti Studio Website',
                     name: formData.name,
