@@ -55,7 +55,7 @@ const products: Product[] = [
         image: '/image/games.png'
     },
     {
-        name: 'Mita | Mikro Task',
+        name: 'MiTa | Mikro Task',
         description: {
             id: 'Platform mikro tasking yang memberikan tugas-tugas sederhana kepada pengguna untuk diselesaikan dengan imbalan tertentu.',
             en: 'A micro tasking platform that provides simple tasks for users to complete with certain rewards.'
@@ -66,6 +66,32 @@ const products: Product[] = [
         isExternal: true,
         gradient: 'from-orange-500 to-pink-500',
         image: '/image/mita-test.png'
+    },
+    {
+        name: 'Healthify',
+        description: {
+            id: 'Asisten AI yang membantu kamu memverifikasi klaim kesehatan dalam hitungan detik, bukan berdasarkan opini, tapi berdasarkan ribuan publikasi ilmiah.',
+            en: 'AI assistant that helps you verify health claims in seconds, not based on opinions, but based on thousands of scientific publications.'
+        },
+        category: 'AI Health Hoax Detector',
+        status: 'available',
+        link: 'https://healthify.twenti.studio',
+        isExternal: true,
+        gradient: 'from-orange-500 to-pink-500',
+        image: '/image/healti.png'
+    },
+    {
+        name: 'Slipku',
+        description: {
+            id: 'Asisten AI yang membantu kamu mencatat pengeluaran dan pemasukan dengan mudah dan cepat.',
+            en: 'AI assistant that helps you record expenses and income easily and quickly.'
+        },
+        category: 'AI Personal Finance Assistant',
+        status: 'available',
+        link: 'https://t.me/slipku_bot',
+        isExternal: true,
+        gradient: 'from-orange-500 to-pink-500',
+        image: '/image/slipku.png'
     },
     
 ];
