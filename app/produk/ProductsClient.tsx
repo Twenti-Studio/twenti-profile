@@ -81,17 +81,17 @@ const products: Product[] = [
         image: '/image/healti.png'
     },
     {
-        name: 'Slipku',
+        name: 'FiNot',
         description: {
             id: 'Asisten AI yang membantu kamu mencatat pengeluaran dan pemasukan dengan mudah dan cepat.',
             en: 'AI assistant that helps you record expenses and income easily and quickly.'
         },
         category: 'AI Personal Finance Assistant',
         status: 'available',
-        link: 'https://t.me/slipku_bot',
+        link: 'https://t.me/finot_finance_bot',
         isExternal: true,
         gradient: 'from-orange-500 to-pink-500',
-        image: '/image/slipku.png'
+        image: '/image/finot.jpeg'
     },
     
 ];
