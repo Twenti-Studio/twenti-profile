@@ -81,7 +81,7 @@ const products: Product[] = [
         image: '/image/healti.png'
     },
     {
-        name: 'FiNot',
+        name: 'FiNot | Finance Notes',
         description: {
             id: 'Asisten AI yang membantu kamu mencatat pengeluaran dan pemasukan dengan mudah dan cepat.',
             en: 'AI assistant that helps you record expenses and income easily and quickly.'
@@ -91,7 +91,7 @@ const products: Product[] = [
         link: 'https://t.me/finot_finance_bot',
         isExternal: true,
         gradient: 'from-orange-500 to-pink-500',
-        image: '/image/finot.jpeg'
+        image: '/image/FiNot.png'
     },
     
 ];
