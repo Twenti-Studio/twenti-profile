@@ -88,7 +88,7 @@ const products: Product[] = [
         },
         category: 'AI Personal Finance Assistant',
         status: 'available',
-        link: 'https://t.me/finot_finance_bot',
+        link: 'https://finot.twenti.studio',
         isExternal: true,
         gradient: 'from-orange-500 to-pink-500',
         image: '/image/FiNot.png'
