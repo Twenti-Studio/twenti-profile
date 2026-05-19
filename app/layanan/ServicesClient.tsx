@@ -45,7 +45,6 @@ const ServicesClient = () => {
                     'Blog & Content Platform',
                 ]
             },
-            technologies: ['React', 'Next.js', 'Vue.js', 'Node.js', 'Laravel', 'PostgreSQL'],
         },
         {
             id: 'mobile-app',
@@ -71,7 +70,6 @@ const ServicesClient = () => {
                     'Offline Functionality',
                 ]
             },
-            technologies: ['React Native', 'Flutter', 'Swift', 'Kotlin', 'Firebase', 'AWS'],
         },
         {
             id: 'design',
@@ -97,7 +95,6 @@ const ServicesClient = () => {
                     'Design Handoff',
                 ]
             },
-            technologies: ['Figma', 'Adobe XD', 'Sketch', 'Principle', 'Framer', 'InVision'],
         },
         {
             id: 'konsultasi',
@@ -123,7 +120,6 @@ const ServicesClient = () => {
                     'Team Mentoring',
                 ]
             },
-            technologies: ['Cloud Architecture', 'DevOps', 'Security', 'Scalability', 'CI/CD', 'Microservices'],
         },
     ];
 
@@ -241,18 +237,6 @@ const ServicesClient = () => {
                                             </li>
                                         ))}
                                     </ul>
-                                </div>
-
-                                {/* Technologies */}
-                                <div className="flex flex-wrap gap-2">
-                                    {service.technologies.map((tech) => (
-                                        <span
-                                            key={tech}
-                                            className="px-3 py-1 bg-dark-600 text-gray-400 text-xs rounded-full border border-white/5"
-                                        >
-                                            {tech}
-                                        </span>
-                                    ))}
                                 </div>
                             </div>
                         ))}
