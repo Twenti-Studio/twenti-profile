@@ -88,10 +88,23 @@ const products: Product[] = [
         },
         category: 'AI Personal Finance Assistant',
         status: 'available',
-        link: 'https://finot.twenti.studio',
+        link: 'https://fi-not.app',
         isExternal: true,
         gradient: 'from-orange-500 to-pink-500',
         image: '/image/FiNot.png'
+    },
+    {
+        name: 'Well Track',
+        description: {
+            id: 'Sehat itu harusnya semudah bercerita.',
+            en: 'Health should be as easy as telling a story.'
+        },
+        category: 'AI Personal Health Assistant',
+        status: 'available',
+        link: 'https://welltrack.twenti.studio',
+        isExternal: true,
+        gradient: 'from-orange-500 to-pink-500',
+        image: '/image/welltrack.png'
     },
     
 ];
