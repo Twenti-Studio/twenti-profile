@@ -88,7 +88,7 @@ const products: Product[] = [
         },
         category: 'AI Personal Finance Assistant',
         status: 'available',
-        link: 'https://fi-not.app',
+        link: 'https://fi-note.app',
         isExternal: true,
         gradient: 'from-orange-500 to-pink-500',
         image: '/image/FiNot.png'
