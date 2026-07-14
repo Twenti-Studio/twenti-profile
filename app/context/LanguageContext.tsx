@@ -26,14 +26,14 @@ export const translations: Translations = {
     
     // HOME PAGE - HERO
     
-    'home.hero.title1': { id: 'Membangun Aplikasi', en: 'Building Apps' },
-    'home.hero.title2': { id: 'yang Menyelesaikan Masalah', en: 'That Solve Problems' },
-    'home.hero.subtitle': { 
-        id: 'Twenti Studio adalah app studio yang berfokus pada pengembangan aplikasi dan solusi digital untuk menyelesaikan permasalahan nyata yang dihadapi siapa saja.', 
-        en: 'Twenti Studio is an app studio focused on developing applications and digital solutions to solve real problems faced by anyone.' 
+    'home.hero.title1': { id: 'Kami Menyelesaikan Masalah', en: 'We Solve Real Problems' },
+    'home.hero.title2': { id: 'Lewat Produk Kami, dan Produk Anda', en: 'Through Our Products, and Yours' },
+    'home.hero.subtitle': {
+        id: 'Twenti Studio membangun produk digitalnya sendiri untuk menyelesaikan masalah nyata—dan menurunkan tim serta pengalaman yang sama untuk membangun solusi bagi bisnis Anda. Dari ide, jadi produk, sampai bertumbuh.',
+        en: 'Twenti Studio builds its own digital products to solve real problems—and puts the same team and experience behind building solutions for your business. From idea, to product, to growth.'
     },
-    'home.hero.cta1': { id: 'Lihat Produk', en: 'View Products' },
-    'home.hero.cta2': { id: 'Jelajahi Layanan', en: 'Explore Services' },
+    'home.hero.cta1': { id: 'Lihat Produk Kami', en: 'See Our Products' },
+    'home.hero.cta2': { id: 'Bangun Produk Anda', en: 'Build Your Product' },
 
     
     // HOME PAGE - ABOUT SECTION
@@ -98,10 +98,22 @@ export const translations: Translations = {
     'home.testimonials.label': { id: 'Testimonial', en: 'Testimonials' },
     'home.testimonials.title': { id: 'Apa Kata', en: 'What Our' },
     'home.testimonials.titleHighlight': { id: 'Klien Kami', en: 'Clients Said' },
-    'home.testimonials.subtitle': { 
-        id: 'Kepuasan klien adalah prioritas utama kami. Berikut adalah beberapa testimoni dari klien yang telah bekerja sama dengan kami.', 
-        en: 'Client satisfaction is our top priority. Here are some testimonials from clients who have worked with us.' 
+    'home.testimonials.subtitle': {
+        id: 'Kepuasan klien adalah prioritas utama kami. Berikut adalah beberapa testimoni dari klien yang telah bekerja sama dengan kami.',
+        en: 'Client satisfaction is our top priority. Here are some testimonials from clients who have worked with us.'
     },
+
+
+    // HOME PAGE - TRUSTED BY (klien nyata)
+
+    'home.trustedBy.label': { id: 'Dipercaya Oleh', en: 'Trusted By' },
+    'home.trustedBy.title': { id: 'Sistem yang Kami Bangun,', en: 'The Systems We Built,' },
+    'home.trustedBy.titleHighlight': { id: 'Sudah Berjalan', en: 'Already Running' },
+    'home.trustedBy.subtitle': {
+        id: 'Dari instansi pemerintah hingga bisnis logistik—solusi yang kami bangun dipakai setiap hari untuk menyelesaikan masalah nyata.',
+        en: 'From government institutions to logistics businesses—the solutions we build are used every day to solve real problems.'
+    },
+    'home.trustedBy.viewPortfolio': { id: 'Lihat Portofolio Lengkap', en: 'View Full Portfolio' },
 
     
     // HOME PAGE - FAQ
@@ -165,9 +177,9 @@ export const translations: Translations = {
     
     'products.title': { id: 'Kami', en: 'Products' },
     'products.titlePrefix': { id: 'Produk', en: 'Our' },
-    'products.subtitle': { 
-        id: 'Aplikasi dan tools yang kami kembangkan untuk menyelesaikan berbagai permasalahan sehari-hari.', 
-        en: 'Applications and tools we develop to solve various everyday problems.' 
+    'products.subtitle': {
+        id: 'Bukti bahwa kami tidak hanya membangun untuk orang lain—ini aplikasi dan tools yang kami rancang, bangun, dan jalankan sendiri untuk menyelesaikan masalah nyata.',
+        en: 'Proof that we do not only build for others—these are the applications and tools we design, build, and run ourselves to solve real problems.'
     },
     'products.explore': { id: 'Jelajahi', en: 'Explore' },
     'products.exploreHighlight': { id: 'Produk Kami', en: 'Our Products' },
@@ -184,6 +196,23 @@ export const translations: Translations = {
     'products.available': { id: 'Tersedia', en: 'Available' },
     'products.development': { id: 'Pengembangan', en: 'Development' },
     'products.comingSoon': { id: 'Segera Hadir', en: 'Coming Soon' },
+
+
+    // SHOWCASE MODAL (produk & portofolio klien)
+
+    'showcase.visitNow': { id: 'Kunjungi Sekarang', en: 'Visit Now' },
+    'showcase.close': { id: 'Tutup', en: 'Close' },
+
+
+    // CLIENT PORTFOLIO
+
+    'portfolio.label': { id: 'Portofolio Klien', en: 'Client Portfolio' },
+    'portfolio.title': { id: 'Kami Juga Membangun', en: 'We Also Build' },
+    'portfolio.titleHighlight': { id: 'untuk Mereka', en: 'For Them' },
+    'portfolio.subtitle': {
+        id: 'Pendekatan produk yang sama kami pakai untuk menyelesaikan masalah klien. Klik salah satu untuk melihat detailnya.',
+        en: 'The same product approach we use to solve our clients\' problems. Click any of them to see the details.'
+    },
 
     
     // SERVICES PAGE

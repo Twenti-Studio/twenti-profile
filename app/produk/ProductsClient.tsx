@@ -1,7 +1,9 @@
 'use client';
 
-import { ArrowRight, ExternalLink } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+import { useState } from 'react';
+import ShowcaseModal, { ShowcaseItem } from '../components/ShowcaseModal';
 import { useLanguage } from '../context/LanguageContext';
 
 // Loading skeleton for hydration
@@ -20,13 +22,11 @@ const LoadingSkeleton = () => (
 // 1. Tambahkan object produk baru ke array 'products' di bawah
 // 2. Isi semua field yang diperlukan:
 //    - name: Nama produk
-//    - description: Deskripsi singkat produk (id & en)
-//    - category: Kategori produk (Web App, Mobile App, SaaS, dll)
-//    - status: 'coming-soon', 'available', atau 'beta'
-//    - link: URL produk (internal /produk/nama-produk atau external https://...)
-//    - isExternal: true jika link eksternal, false jika internal
-//    - image: Path ke gambar produk (contoh: '/images/products/nama-produk.png')
-//    - gradient: Warna gradient fallback jika gambar belum tersedia
+//    - description: Ringkasan singkat produk (id & en) -> tampil di modal
+//    - category: Kategori produk (Web App, Digital Store, dll)
+//    - status: 'coming-soon', 'available', atau 'development'
+//    - link: URL produk. Ini yang dibuka tombol "Kunjungi Sekarang" di modal
+//    - image: Path ke logo/gambar produk (contoh: '/image/nama-produk.png')
 // ============================================
 
 interface Product {
@@ -35,8 +35,6 @@ interface Product {
     category: string;
     status: 'coming-soon' | 'available' | 'development';
     link: string;
-    isExternal: boolean;
-    gradient: string;
     image?: string;
 }
 
@@ -50,8 +48,6 @@ const products: Product[] = [
         category: 'Digital Store',
         status: 'available',
         link: 'https://games.twenti.studio',
-        isExternal: true,
-        gradient: 'from-blue-500 to-cyan-500',
         image: '/image/games.png'
     },
     {
@@ -63,8 +59,6 @@ const products: Product[] = [
         category: 'Task Platform',
         status: 'development',
         link: 'https://mita.twenti.studio/',
-        isExternal: true,
-        gradient: 'from-orange-500 to-pink-500',
         image: '/image/mita-test.png'
     },
     {
@@ -76,8 +70,6 @@ const products: Product[] = [
         category: 'AI Health Hoax Detector',
         status: 'available',
         link: 'https://healthify.twenti.studio',
-        isExternal: true,
-        gradient: 'from-orange-500 to-pink-500',
         image: '/image/healti.png'
     },
     {
@@ -89,8 +81,6 @@ const products: Product[] = [
         category: 'AI Personal Finance Assistant',
         status: 'available',
         link: 'https://fi-note.app',
-        isExternal: true,
-        gradient: 'from-orange-500 to-pink-500',
         image: '/image/FiNot.png'
     },
     {
@@ -102,15 +92,72 @@ const products: Product[] = [
         category: 'AI Personal Health Assistant',
         status: 'available',
         link: 'https://welltrack.twenti.studio',
-        isExternal: true,
-        gradient: 'from-orange-500 to-pink-500',
         image: '/image/welltrack.png'
     },
-    
+];
+
+// ============================================
+// TEMPLATE: CARA MENAMBAH PORTOFOLIO KLIEN
+// ============================================
+// Tambahkan object ke array 'clients' di bawah:
+//    - name: Nama project/website milik klien
+//    - client: Nama klien / perusahaan pemilik project
+//    - description: Ringkasan singkat project (id & en) -> tampil di modal
+//    - category: Jenis project (Company Profile, Web App, E-Commerce, dll)
+//    - link: URL live project. Dibuka tombol "Kunjungi Sekarang" di modal
+//    - image: Path ke logo/screenshot project (contoh: '/image/nama.png')
+//
+// Contoh:
+// {
+//     name: 'Slipku',
+//     client: 'PT Contoh Sejahtera',
+//     description: {
+//         id: 'Ringkasan singkat project dalam bahasa Indonesia.',
+//         en: 'Short project summary in English.'
+//     },
+//     category: 'Web App',
+//     link: 'https://slipku.example.com',
+//     image: '/image/slipku.png'
+// },
+// ============================================
+
+interface ClientWork {
+    name: string;
+    client: string;
+    description: { id: string; en: string };
+    category: string;
+    link: string;
+    image?: string;
+}
+
+const clients: ClientWork[] = [
+    {
+        name: 'Simaggot Balkot',
+        client: 'Kecamatan Balikpapan Kota',
+        description: {
+            id: 'Sistem digitalisasi operasional budidaya maggot Kecamatan Balikpapan Kota. Menyatukan pendataan lapangan, koordinasi petugas, pencatatan aset, dan tabungan sampah warga dalam satu alur—dengan perhitungan setoran warga yang terhitung otomatis, sehingga pengelola bisa mengambil keputusan dari data yang utuh.',
+            en: 'A system that digitizes maggot cultivation operations for the Balikpapan Kota District. It unifies field data collection, officer coordination, asset tracking, and residents\' waste savings into a single flow—with resident deposits calculated automatically, so managers can make decisions based on complete data.'
+        },
+        category: 'Waste Management System',
+        link: 'https://simaggotbalkot.com',
+        image: '/image/simaggot.png'
+    },
+    {
+        name: 'KlirLogistik',
+        client: 'KlirLogistik',
+        description: {
+            id: 'Layanan logistik dan ekspedisi B2B berbasis langganan dirancang untuk bisnis yang mengirim rutin dan butuh alur pengiriman yang tertata, bukan sekali jalan.',
+            en: 'A subscription-based B2B logistics and shipping service built for businesses that ship regularly and need a structured delivery flow, not one-off runs.'
+        },
+        category: 'B2B Logistics',
+        link: 'https://klirlogistik.technocrats.studio',
+        image: '/image/klirlogistik.png'
+    },
 ];
 
 const ProductsClient = () => {
     const { t, language, isHydrated } = useLanguage();
+    const [selectedItem, setSelectedItem] = useState<ShowcaseItem | null>(null);
 
     // Show loading skeleton until hydrated to prevent hydration mismatch
     if (!isHydrated) {
@@ -161,152 +208,195 @@ const ProductsClient = () => {
                     </div>
 
                     {/* Products Grid */}
-                    <div className="grid md:grid-cols-2 gap-8">
-                        {products.map((product, index) => (
-                            <ProductCard key={index} product={product} language={language} t={t} />
+                    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {products.map((product) => (
+                            <ShowcaseCard
+                                key={product.name}
+                                name={product.name}
+                                category={product.category}
+                                description={product.description[language]}
+                                image={product.image}
+                                status={product.status}
+                                onClick={() => setSelectedItem({
+                                    name: product.name,
+                                    description: product.description,
+                                    category: product.category,
+                                    link: product.link,
+                                    image: product.image,
+                                })}
+                                t={t}
+                            />
                         ))}
                     </div>
+                </div>
+            </section>
 
-                    {/* CTA Section */}
-                    <div className="mt-20 text-center">
-                        <div className="inline-block p-8 bg-dark-700 border border-white/10 rounded-2xl">
-                            <h3 className="text-2xl font-bold mb-4">{t('products.customSolution')}</h3>
-                            <p className="text-gray-400 mb-6 max-w-md">
-                                {t('products.customDesc')}
+            {/* Client Portfolio Section */}
+            {clients.length > 0 && (
+                <section className="py-20 bg-dark-900 relative overflow-hidden">
+                    {/* Background Pattern */}
+                    <div className="absolute inset-0 opacity-5" style={{
+                        backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(255,255,255,0.15) 1px, transparent 0)',
+                        backgroundSize: '40px 40px'
+                    }} />
+
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                        {/* Section Header */}
+                        <div className="text-center mb-12">
+                            <span className="text-sm font-semibold text-orange-500 uppercase tracking-wider">
+                                {t('portfolio.label')}
+                            </span>
+                            <h2 className="text-3xl sm:text-4xl font-bold mt-4 mb-3">
+                                {t('portfolio.title')} <span className="text-orange-500">{t('portfolio.titleHighlight')}</span>
+                            </h2>
+                            <p className="text-gray-400 max-w-2xl mx-auto">
+                                {t('portfolio.subtitle')}
                             </p>
-                            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                                <Link
-                                    href="/layanan"
-                                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-full transition-colors duration-300"
-                                >
-                                    <span>{t('products.viewServices')}</span>
-                                    <ArrowRight className="w-4 h-4" />
-                                </Link>
-                                <Link
-                                    href="/kontak"
-                                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 bg-transparent border-2 border-white/20 text-white font-semibold rounded-full hover:border-orange-500 hover:bg-orange-500/5 transition-all duration-300"
-                                >
-                                    <span>{t('products.contactUs')}</span>
-                                </Link>
-                            </div>
+                        </div>
+
+                        {/* Clients Grid */}
+                        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {clients.map((work) => (
+                                <ShowcaseCard
+                                    key={work.name}
+                                    name={work.name}
+                                    category={work.category}
+                                    description={work.description[language]}
+                                    image={work.image}
+                                    subtitle={work.client}
+                                    onClick={() => setSelectedItem({
+                                        name: work.name,
+                                        description: work.description,
+                                        category: work.category,
+                                        link: work.link,
+                                        image: work.image,
+                                        badge: { id: work.client, en: work.client },
+                                    })}
+                                    t={t}
+                                />
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            )}
+
+            {/* CTA Section */}
+            <section className="py-20 bg-dark-800">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <div className="inline-block p-8 bg-dark-700 border border-white/10 rounded-2xl">
+                        <h3 className="text-2xl font-bold mb-4">{t('products.customSolution')}</h3>
+                        <p className="text-gray-400 mb-6 max-w-md">
+                            {t('products.customDesc')}
+                        </p>
+                        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                            <Link
+                                href="/layanan"
+                                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-full transition-colors duration-300"
+                            >
+                                <span>{t('products.viewServices')}</span>
+                                <ArrowRight className="w-4 h-4" />
+                            </Link>
+                            <Link
+                                href="/kontak"
+                                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 bg-transparent border-2 border-white/20 text-white font-semibold rounded-full hover:border-orange-500 hover:bg-orange-500/5 transition-all duration-300"
+                            >
+                                <span>{t('products.contactUs')}</span>
+                            </Link>
                         </div>
                     </div>
                 </div>
             </section>
+
+            {/* Detail Modal: logo, nama, ringkasan, tombol Kunjungi Sekarang */}
+            <ShowcaseModal item={selectedItem} onClose={() => setSelectedItem(null)} />
         </>
     );
 };
 
 // ============================================
-// PRODUCT CARD COMPONENT
+// SHOWCASE CARD (dipakai produk & portofolio klien)
 // ============================================
-interface ProductCardProps {
-    product: Product;
-    language: 'id' | 'en';
+interface ShowcaseCardProps {
+    name: string;
+    category: string;
+    description: string;
+    image?: string;
+    subtitle?: string;
+    status?: 'coming-soon' | 'available' | 'development';
+    onClick: () => void;
     t: (key: string) => string;
 }
 
-const ProductCard = ({ product, language, t }: ProductCardProps) => {
-    const statusConfig = {
-        'available': {
-            labelKey: 'products.available',
-            color: 'bg-green-500',
-        },
-        'development': {
-            labelKey: 'products.development',
-            color: 'bg-blue-500',
-        },
-        'coming-soon': {
-            labelKey: 'products.comingSoon',
-            color: 'bg-orange-500',
-        }
-    };
+const statusConfig = {
+    'available': { labelKey: 'products.available', color: 'bg-green-500' },
+    'development': { labelKey: 'products.development', color: 'bg-blue-500' },
+    'coming-soon': { labelKey: 'products.comingSoon', color: 'bg-orange-500' },
+};
 
-    const status = statusConfig[product.status];
-    const shouldShowStatus = product.status !== 'available';
+const ShowcaseCard = ({ name, category, description, image, subtitle, status, onClick, t }: ShowcaseCardProps) => {
+    // Badge status hanya ditampilkan kalau produk belum 'available'
+    const showStatus = status && status !== 'available';
+    const statusStyle = showStatus ? statusConfig[status] : null;
 
-    const cardContent = (
-        <div 
-            className="group relative h-full bg-dark-700 border border-white/10 rounded-2xl hover:border-orange-500/30 transition-all duration-500 overflow-hidden flex flex-col"
+    return (
+        <button
+            type="button"
+            onClick={onClick}
+            className="group relative text-left w-full h-full bg-dark-700 border border-white/10 rounded-xl hover:border-orange-500/30 transition-all duration-300 overflow-hidden flex flex-col cursor-pointer"
         >
             {/* Status Badge */}
-            {shouldShowStatus && (
-                <div className={`absolute top-4 right-4 px-3 py-1.5 ${status.color} rounded-full z-10`}>
-                    <span className="text-xs font-semibold text-white">
-                        {t(status.labelKey)}
+            {statusStyle && (
+                <div className={`absolute top-3 right-3 px-2.5 py-1 ${statusStyle.color} rounded-full z-10`}>
+                    <span className="text-[10px] font-semibold text-white">
+                        {t(statusStyle.labelKey)}
                     </span>
                 </div>
             )}
 
-            {/* Product Image Preview */}
-            <div className="relative aspect-4/3 w-full overflow-hidden">
-                {product.image ? (
-                    <>
-                        <img 
-                            src={product.image} 
-                            alt={product.name}
-                            className="w-full h-full object-contain bg-dark-600 group-hover:scale-110 transition-transform duration-700 ease-out"
-                        />
-                        <div className="absolute inset-0 bg-orange-500/0 group-hover:bg-orange-500/10 transition-colors duration-500" />
-                    </>
+            {/* Image Preview */}
+            <div className="relative aspect-video w-full overflow-hidden bg-dark-600">
+                {image ? (
+                    <img
+                        src={image}
+                        alt={name}
+                        className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500 ease-out"
+                    />
                 ) : (
-                    <div className="w-full h-full bg-dark-600 flex items-center justify-center">
-                        <span className="text-4xl font-bold text-gray-500">{product.name.charAt(0)}</span>
+                    <div className="w-full h-full flex items-center justify-center">
+                        <span className="text-3xl font-bold text-gray-500">{name.charAt(0)}</span>
                     </div>
                 )}
             </div>
 
             {/* Content */}
-            <div className="flex-1 p-6 flex flex-col">
+            <div className="flex-1 p-5 flex flex-col">
                 {/* Category Tag */}
-                <span className="text-xs font-semibold text-orange-500 uppercase tracking-wider mb-2">
-                    {product.category}
+                <span className="text-[10px] font-semibold text-orange-500 uppercase tracking-wider mb-1.5">
+                    {category}
                 </span>
-                
+
                 {/* Title */}
-                <h3 className="text-xl font-bold mb-3 text-white group-hover:text-orange-500 transition-colors duration-300">
-                    {product.name}
+                <h3 className="text-base font-bold text-white group-hover:text-orange-500 transition-colors duration-300">
+                    {name}
                 </h3>
-                
+
+                {/* Subtitle (nama klien, kalau ada) */}
+                {subtitle && (
+                    <p className="text-xs text-gray-500 mt-0.5">{subtitle}</p>
+                )}
+
                 {/* Description */}
-                <p className="text-gray-400 text-sm leading-relaxed mb-4 flex-1">
-                    {product.description[language]}
+                <p className="text-gray-400 text-xs leading-relaxed mt-2 mb-4 line-clamp-2 flex-1">
+                    {description}
                 </p>
 
                 {/* CTA */}
-                <div className="flex items-center gap-2 text-orange-500 font-medium group-hover:text-orange-400 transition-colors">
-                    <span className="text-sm">
-                        {product.status === 'available' ? t('products.viewDetails') : t('products.learnMore')}
-                    </span>
-                    <div className="transform group-hover:translate-x-2 transition-transform duration-300">
-                        {product.isExternal ? (
-                            <ExternalLink className="w-4 h-4" />
-                        ) : (
-                            <ArrowRight className="w-4 h-4" />
-                        )}
-                    </div>
+                <div className="flex items-center gap-1.5 text-orange-500 text-xs font-medium group-hover:text-orange-400 transition-colors">
+                    <span>{t('products.viewDetails')}</span>
+                    <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform duration-300" />
                 </div>
             </div>
-        </div>
-    );
-
-    if (product.isExternal) {
-        return (
-            <a
-                href={product.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block h-full"
-            >
-                {cardContent}
-            </a>
-        );
-    }
-
-    return (
-        <Link href={product.link} className="block h-full">
-            {cardContent}
-        </Link>
+        </button>
     );
 };
 

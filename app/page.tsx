@@ -6,8 +6,7 @@ import {
   Laptop,
   Layout,
   Palette,
-  Smartphone,
-  Star
+  Smartphone
 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -55,34 +54,48 @@ export default function Home() {
     },
   ];
 
-  const testimonials = [
-    {
-      name: 'Budi Santoso',
-      role: 'CEO, TechStartup',
-      content: {
-        id: 'Twenti Studio membantu kami membangun platform yang solid dan scalable. Tim yang profesional dengan komunikasi yang baik sepanjang proyek.',
-        en: 'Twenti Studio helped us build a solid and scalable platform. Professional team with great communication throughout the project.'
+  // ============================================
+  // TESTIMONI
+  // ============================================
+  // KOSONG SAMPAI ADA KUTIPAN YANG DISETUJUI ORANGNYA.
+  // Jangan isi dengan kalimat karangan yang diatasnamakan orang asli—
+  // itu testimoni palsu dan merusak kredibilitas kalau diklarifikasi.
+  //
+  // Cara mengisi: minta Juan, Saman, dan Philos menuliskan/menyetujui
+  // kalimatnya sendiri, lalu tambahkan object seperti contoh di bawah.
+  // Begitu array ini terisi, section testimoni otomatis muncul kembali.
+  //
+  // {
+  //   name: 'Saman',
+  //   role: 'Klien, KlirLogistik',
+  //   content: {
+  //     id: 'Kalimat asli dari yang bersangkutan.',
+  //     en: 'Their own words, translated.'
+  //   },
+  //   avatar: 'S',
+  // },
+  // ============================================
+  const testimonials: {
+    name: string;
+    role: string;
+    content: { id: string; en: string };
+    avatar: string;
+  }[] = [
+      {
+        name: 'Ramlan',
+        role: 'Camat, Kecamatan Balikpapan Kota',
+        content: {
+          id: 'Hasil pengerjaan bagus dan bekerja dengan baik.',
+          en: 'The work was done well and it runs well.'
+        },
+        avatar: 'R',
       },
-      avatar: 'BS',
-    },
-    {
-      name: 'Siti Rahayu',
-      role: 'Founder, EduTech',
-      content: {
-        id: 'Aplikasi yang dibangun Twenti Studio sangat membantu bisnis kami berkembang. Proses pengembangan terstruktur dan hasilnya memuaskan.',
-        en: 'The application built by Twenti Studio has greatly helped our business grow. Structured development process with satisfying results.'
-      },
-      avatar: 'SR',
-    },
-    {
-      name: 'Ahmad Hidayat',
-      role: 'Manager, FinCorp',
-      content: {
-        id: 'Kualitas kerja yang sangat baik dengan timeline yang realistis. Kami sangat puas dengan sistem yang dihasilkan.',
-        en: 'Excellent work quality with realistic timeline. We are very satisfied with the resulting system.'
-      },
-      avatar: 'AH',
-    },
+    ];
+
+  // Klien nyata yang sudah berjalan—ini bukti faktual, bukan klaim.
+  const trustedBy = [
+    { name: 'Kecamatan Balikpapan Kota', project: 'Simaggot Balkot', image: '/image/simaggot.png' },
+    { name: 'KlirLogistik', project: 'KlirLogistik', image: '/image/klirlogistik.png' },
   ];
 
   const faqs = [
@@ -259,47 +272,100 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonials Section */}
+      {/* Testimonials Section — hanya tampil kalau ada kutipan yang sudah disetujui */}
+      {testimonials.length > 0 && (
+        <section className="py-24 bg-dark-800">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            {/* Header */}
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <span className="text-sm font-semibold text-orange-500 uppercase tracking-wider">
+                {t('home.testimonials.label')}
+              </span>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mt-4 mb-6">
+                {t('home.testimonials.title')}{' '}
+                <span className="text-orange-500">{t('home.testimonials.titleHighlight')}</span>
+              </h2>
+              <p className="text-gray-400 text-lg">
+                {t('home.testimonials.subtitle')}
+              </p>
+            </div>
+
+            {/* Testimonials Grid — grid menyesuaikan jumlah testimoni yang ada */}
+            <div className={`grid gap-8 ${testimonials.length === 1
+                ? 'max-w-xl mx-auto'
+                : testimonials.length === 2
+                  ? 'md:grid-cols-2 max-w-4xl mx-auto'
+                  : 'md:grid-cols-3'
+              }`}>
+              {testimonials.map((testimonial) => (
+                <div
+                  key={testimonial.name}
+                  className="p-8 bg-dark-700 border border-white/5 rounded-2xl card-hover"
+                >
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-14 h-14 flex items-center justify-center bg-dark-600 rounded-full text-white font-bold text-xl">
+                      {testimonial.avatar}
+                    </div>
+                    <div>
+                      <h4 className="font-semibold">{testimonial.name}</h4>
+                      <p className="text-sm text-gray-400">{testimonial.role}</p>
+                    </div>
+                  </div>
+                  <p className="text-gray-300 leading-relaxed italic">&ldquo;{testimonial.content[language]}&rdquo;</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Trusted By — bukti faktual: klien yang sistemnya benar-benar berjalan */}
       <section className="py-24 bg-dark-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Header */}
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="text-sm font-semibold text-orange-500 uppercase tracking-wider">
-              {t('home.testimonials.label')}
+              {t('home.trustedBy.label')}
             </span>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mt-4 mb-6">
-              {t('home.testimonials.title')}{' '}
-              <span className="text-orange-500">{t('home.testimonials.titleHighlight')}</span>
+              {t('home.trustedBy.title')}{' '}
+              <span className="text-orange-500">{t('home.trustedBy.titleHighlight')}</span>
             </h2>
             <p className="text-gray-400 text-lg">
-              {t('home.testimonials.subtitle')}
+              {t('home.trustedBy.subtitle')}
             </p>
           </div>
 
-          {/* Testimonials Grid */}
-          <div className="grid md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial) => (
+          <div className="flex flex-wrap items-center justify-center gap-6">
+            {trustedBy.map((client) => (
               <div
-                key={testimonial.name}
-                className="p-8 bg-dark-700 border border-white/5 rounded-2xl card-hover"
+                key={client.name}
+                className="flex items-center gap-4 px-6 py-4 bg-dark-700 border border-white/5 rounded-2xl card-hover"
               >
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-14 h-14 flex items-center justify-center bg-dark-600 rounded-full text-white font-bold text-xl">
-                    {testimonial.avatar}
-                  </div>
-                  <div>
-                    <h4 className="font-semibold">{testimonial.name}</h4>
-                    <p className="text-sm text-gray-400">{testimonial.role}</p>
-                  </div>
+                <div className="w-14 h-14 shrink-0 rounded-xl bg-dark-600 flex items-center justify-center overflow-hidden">
+                  <Image
+                    src={client.image}
+                    alt={client.name}
+                    width={56}
+                    height={56}
+                    className="object-contain p-1.5"
+                  />
                 </div>
-                <p className="text-gray-300 leading-relaxed italic">&ldquo;{testimonial.content[language]}&rdquo;</p>
-                <div className="flex gap-1 mt-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 text-yellow-500 fill-yellow-500" />
-                  ))}
+                <div className="text-left">
+                  <h4 className="font-semibold text-white">{client.name}</h4>
+                  <p className="text-sm text-gray-400">{client.project}</p>
                 </div>
               </div>
             ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <Link
+              href="/produk"
+              className="inline-flex items-center gap-2 text-orange-500 font-semibold hover:text-orange-400 transition-colors"
+            >
+              <span>{t('home.trustedBy.viewPortfolio')}</span>
+              <ArrowRight className="w-5 h-5" />
+            </Link>
           </div>
         </div>
       </section>
