@@ -203,10 +203,12 @@ export default function Home() {
           Ini yang membedakan app studio dengan agency. */}
       <Products />
 
-      {/* About / Studio Section */}
-      <section className="py-24 bg-dark-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+      {/* About / Studio Section.
+          Teksnya sengaja pendek, jadi kolomnya dibuat lebih rapat
+          (max-w-5xl) supaya tidak ada ruang kosong menganga. */}
+      <section className="py-20 bg-dark-800">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Content */}
             <div>
               <span className="text-sm font-semibold text-orange-500 uppercase tracking-wider">
@@ -242,32 +244,31 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Visual Logo */}
+            {/* Visual Logo.
+                Tinggi kartu mengikuti isinya, bukan aspect-square. Kartu
+                persegi selebar setengah layar membuat ruang kosong besar
+                karena isinya hanya logo dan dua baris teks. */}
             <div className="relative">
-              <div className="aspect-square bg-dark-700 rounded-3xl p-8 border border-white/5">
-                <div className="w-full h-full bg-dark-600 rounded-2xl flex items-center justify-center relative overflow-hidden">
-                  <div className="relative z-10 text-center">
-                    <div className="w-32 h-32 mx-auto mb-6 relative">
-                      <Image
-                        src="/logo.png"
-                        alt="Twenti Studio Logo"
-                        fill
-                        className="object-contain"
-                      />
-                    </div>
-                    <h3 className="text-3xl font-bold mb-2 text-white">
-                      Twenti Studio
-                    </h3>
-                    <p className="text-gray-400 text-lg">
-                      {t("home.about.tagline")}
-                    </p>
-                  </div>
+              <div className="bg-dark-700 rounded-2xl border border-white/5 p-8 flex flex-col items-center text-center">
+                <div className="w-20 h-20 mb-4 relative">
+                  <Image
+                    src="/logo.png"
+                    alt="Logo Twenti Studio"
+                    fill
+                    className="object-contain"
+                  />
                 </div>
+                <h3 className="text-xl font-bold mb-1 text-white">
+                  Twenti Studio
+                </h3>
+                <p className="text-gray-400 text-sm">
+                  {t("home.about.tagline")}
+                </p>
               </div>
-              {/* Decorative elements */}
-              <div className="absolute -top-4 -right-4 w-24 h-24 bg-orange-500/20 rounded-full blur-xl animate-pulse" />
+              {/* Aksen dekoratif */}
+              <div className="absolute -top-4 -right-4 w-20 h-20 bg-orange-500/20 rounded-full blur-xl animate-pulse -z-10" />
               <div
-                className="absolute -bottom-4 -left-4 w-32 h-32 bg-navy-700/30 rounded-full blur-xl animate-pulse"
+                className="absolute -bottom-4 -left-4 w-24 h-24 bg-navy-700/30 rounded-full blur-xl animate-pulse -z-10"
                 style={{ animationDelay: "1s" }}
               />
             </div>
