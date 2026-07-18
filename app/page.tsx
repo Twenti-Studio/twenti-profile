@@ -1,56 +1,67 @@
-'use client';
+"use client";
 
 import {
   ArrowRight,
   CheckCircle,
+  Code2,
   Laptop,
   Layout,
   Palette,
-  Smartphone
-} from 'lucide-react';
-import Image from 'next/image';
-import Link from 'next/link';
-import Products from './components/Products/Products';
-import { useLanguage } from './context/LanguageContext';
-
-// Loading skeleton for hydration
-const LoadingSkeleton = () => (
-  <div className="min-h-screen bg-dark-900 flex items-center justify-center">
-    <div className="text-center">
-      <div className="w-12 h-12 border-2 border-orange-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-      <div className="w-48 h-4 bg-dark-700 rounded animate-pulse mx-auto" />
-    </div>
-  </div>
-);
+  Server,
+  ShieldCheck,
+  Smartphone,
+} from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import Products from "./components/Products/Products";
+import { useLanguage } from "./context/LanguageContext";
 
 export default function Home() {
-  const { t, language, isHydrated } = useLanguage();
+  const { t, language } = useLanguage();
 
-  // Show loading skeleton until hydrated to prevent hydration mismatch
-  if (!isHydrated) {
-    return <LoadingSkeleton />;
-  }
-
-  const features = [
-    {
-      icon: <Laptop className="w-8 h-8" />,
-      titleKey: 'home.features.webDev.title',
-      descKey: 'home.features.webDev.desc',
-    },
-    {
-      icon: <Smartphone className="w-8 h-8" />,
-      titleKey: 'home.features.mobile.title',
-      descKey: 'home.features.mobile.desc',
-    },
-    {
-      icon: <Layout className="w-8 h-8" />,
-      titleKey: 'home.features.saas.title',
-      descKey: 'home.features.saas.desc',
-    },
+  // Empat kemampuan inti studio, bukan daftar jasa.
+  // Framing-nya: kemampuan ini kami asah lewat produk sendiri
+  // lalu dipakai juga saat berkolaborasi dengan pihak lain.
+  const capabilities = [
     {
       icon: <Palette className="w-8 h-8" />,
-      titleKey: 'home.features.design.title',
-      descKey: 'home.features.design.desc',
+      titleKey: "home.whatWeBuild.design.title",
+      descKey: "home.whatWeBuild.design.desc",
+    },
+    {
+      icon: <Code2 className="w-8 h-8" />,
+      titleKey: "home.whatWeBuild.development.title",
+      descKey: "home.whatWeBuild.development.desc",
+    },
+    {
+      icon: <ShieldCheck className="w-8 h-8" />,
+      titleKey: "home.whatWeBuild.quality.title",
+      descKey: "home.whatWeBuild.quality.desc",
+    },
+    {
+      icon: <Server className="w-8 h-8" />,
+      titleKey: "home.whatWeBuild.infrastructure.title",
+      descKey: "home.whatWeBuild.infrastructure.desc",
+    },
+  ];
+
+  // Tiga bentuk kolaborasi, ditampilkan sebagai kompetensi studio
+  // bukan identitas utama perusahaan.
+  const collaborationForms = [
+    {
+      icon: <Laptop className="w-7 h-7" />,
+      titleKey: "work.forms.website.title",
+      descKey: "work.forms.website.desc",
+    },
+    {
+      icon: <Smartphone className="w-7 h-7" />,
+      titleKey: "work.forms.product.title",
+      descKey: "work.forms.product.desc",
+    },
+    {
+      icon: <Layout className="w-7 h-7" />,
+      titleKey: "work.forms.improve.title",
+      descKey: "work.forms.improve.desc",
     },
   ];
 
@@ -58,7 +69,7 @@ export default function Home() {
   // TESTIMONI
   // ============================================
   // KOSONG SAMPAI ADA KUTIPAN YANG DISETUJUI ORANGNYA.
-  // Jangan isi dengan kalimat karangan yang diatasnamakan orang asli—
+  // Jangan isi dengan kalimat karangan yang diatasnamakan orang asli
   // itu testimoni palsu dan merusak kredibilitas kalau diklarifikasi.
   //
   // Cara mengisi: minta Juan, Saman, dan Philos menuliskan/menyetujui
@@ -66,43 +77,48 @@ export default function Home() {
   // Begitu array ini terisi, section testimoni otomatis muncul kembali.
   //
   // {
-  //   name: 'Saman',
-  //   role: 'Klien, KlirLogistik',
-  //   content: {
-  //     id: 'Kalimat asli dari yang bersangkutan.',
+  //   name: 'Saman'
+  //   role: 'Klien, KlirLogistik', //   content: {
+  //     id: 'Kalimat asli dari yang bersangkutan.'
   //     en: 'Their own words, translated.'
-  //   },
-  //   avatar: 'S',
-  // },
-  // ============================================
+  //   }
+  //   avatar: 'S', // }, // ============================================
   const testimonials: {
     name: string;
     role: string;
     content: { id: string; en: string };
     avatar: string;
   }[] = [
-      {
-        name: 'Ramlan',
-        role: 'Camat, Kecamatan Balikpapan Kota',
-        content: {
-          id: 'Hasil pengerjaan bagus dan bekerja dengan baik.',
-          en: 'The work was done well and it runs well.'
-        },
-        avatar: 'R',
+    {
+      name: "Ramlan",
+      role: "Camat, Kecamatan Balikpapan Kota",
+      content: {
+        id: "Hasil pengerjaan bagus dan bekerja dengan baik.",
+        en: "The work was done well and it runs well.",
       },
-    ];
+      avatar: "R",
+    },
+  ];
 
-  // Klien nyata yang sudah berjalan—ini bukti faktual, bukan klaim.
+  // Klien nyata yang sudah berjalan, ini bukti faktual, bukan klaim.
   const trustedBy = [
-    { name: 'Kecamatan Balikpapan Kota', project: 'Simaggot Balkot', image: '/image/simaggot.png' },
-    { name: 'KlirLogistik', project: 'KlirLogistik', image: '/image/klirlogistik.png' },
+    {
+      name: "Kecamatan Balikpapan Kota",
+      project: "Simaggot Balkot",
+      image: "/image/simaggot.png",
+    },
+    {
+      name: "KlirLogistik",
+      project: "KlirLogistik",
+      image: "/image/klirlogistik.png",
+    },
   ];
 
   const faqs = [
-    { qKey: 'faq.q1', aKey: 'faq.a1' },
-    { qKey: 'faq.q2', aKey: 'faq.a2' },
-    { qKey: 'faq.q3', aKey: 'faq.a3' },
-    { qKey: 'faq.q5', aKey: 'faq.a5' },
+    { qKey: "faq.q1", aKey: "faq.a1" },
+    { qKey: "faq.q2", aKey: "faq.a2" },
+    { qKey: "faq.q3", aKey: "faq.a3" },
+    { qKey: "faq.q5", aKey: "faq.a5" },
   ];
 
   return (
@@ -112,24 +128,31 @@ export default function Home() {
         {/* Background Effects */}
         <div className="absolute inset-0 bg-dark-900">
           <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-navy-700/30 rounded-full blur-[100px] animate-float" />
-          <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-orange-500/20 rounded-full blur-[100px] animate-float" style={{ animationDelay: '2s' }} />
-          <div className="absolute inset-0" style={{
-            backgroundImage: 'radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px)',
-            backgroundSize: '50px 50px'
-          }} />
+          <div
+            className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-orange-500/20 rounded-full blur-[100px] animate-float"
+            style={{ animationDelay: "2s" }}
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage:
+                "radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px)",
+              backgroundSize: "50px 50px",
+            }}
+          />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
           {/* Headline */}
           <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-6">
-            {t('home.hero.title1')}
+            {t("home.hero.title1")}
             <br />
-            <span className="text-orange-500">{t('home.hero.title2')}</span>
+            <span className="text-orange-500">{t("home.hero.title2")}</span>
           </h1>
 
           {/* Subheadline */}
           <p className="text-lg sm:text-xl text-gray-400 max-w-3xl mx-auto mb-10 leading-relaxed">
-            {t('home.hero.subtitle')}
+            {t("home.hero.subtitle")}
           </p>
 
           {/* CTA Buttons */}
@@ -138,57 +161,60 @@ export default function Home() {
               href="/produk"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-full transition-colors duration-300"
             >
-              <span>{t('home.hero.cta1')}</span>
+              <span>{t("home.hero.cta1")}</span>
               <ArrowRight className="w-5 h-5" />
             </Link>
             <Link
               href="/layanan"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-transparent border-2 border-orange-500 text-white font-semibold rounded-full hover:bg-orange-500/10 transition-all duration-300"
             >
-              <span>{t('home.hero.cta2')}</span>
+              <span>{t("home.hero.cta2")}</span>
             </Link>
           </div>
         </div>
       </section>
 
-      {/* About Section */}
+      {/* Produk Twenti, tampil lebih dulu daripada layanan.
+          Ini yang membedakan app studio dengan agency. */}
+      <Products />
+
+      {/* About / Studio Section */}
       <section className="py-24 bg-dark-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Content */}
             <div>
               <span className="text-sm font-semibold text-orange-500 uppercase tracking-wider">
-                {t('home.about.label')}
+                {t("home.about.label")}
               </span>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mt-4 mb-6">
-                {t('home.about.title')}{' '}
-                <span className="text-orange-500">{t('home.about.titleHighlight')}</span>
+                {t("home.about.title")}{" "}
+                <span className="text-orange-500">
+                  {t("home.about.titleHighlight")}
+                </span>
               </h2>
               <p className="text-gray-400 text-lg leading-relaxed mb-4">
-                {t('home.about.desc1')}
+                {t("home.about.desc1")}
               </p>
               <p className="text-gray-400 text-lg leading-relaxed mb-4">
-                {t('home.about.desc2')}
-              </p>
-              <p className="text-gray-400 text-lg leading-relaxed mb-6">
-                {t('home.about.desc3')}
+                {t("home.about.desc2")}
               </p>
               <p className="text-gray-400 text-lg leading-relaxed mb-8">
-                {t('home.about.desc4')}
+                {t("home.about.desc3")}
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link
                   href="/produk"
                   className="inline-flex items-center gap-2 text-orange-500 font-semibold hover:text-orange-400 transition-colors"
                 >
-                  <span>{t('home.about.viewProducts')}</span>
+                  <span>{t("home.about.viewProducts")}</span>
                   <ArrowRight className="w-5 h-5" />
                 </Link>
                 <Link
                   href="/layanan"
                   className="inline-flex items-center gap-2 text-gray-400 font-semibold hover:text-white transition-colors"
                 >
-                  <span>{t('home.about.learnServices')}</span>
+                  <span>{t("home.about.learnServices")}</span>
                   <ArrowRight className="w-5 h-5" />
                 </Link>
               </div>
@@ -207,96 +233,97 @@ export default function Home() {
                         className="object-contain"
                       />
                     </div>
-                    <h3 className="text-3xl font-bold mb-2 text-white">Twenti Studio</h3>
-                    <p className="text-gray-400 text-lg">{t('home.about.tagline')}</p>
+                    <h3 className="text-3xl font-bold mb-2 text-white">
+                      Twenti Studio
+                    </h3>
+                    <p className="text-gray-400 text-lg">
+                      {t("home.about.tagline")}
+                    </p>
                   </div>
                 </div>
               </div>
               {/* Decorative elements */}
               <div className="absolute -top-4 -right-4 w-24 h-24 bg-orange-500/20 rounded-full blur-xl animate-pulse" />
-              <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-navy-700/30 rounded-full blur-xl animate-pulse" style={{ animationDelay: '1s' }} />
+              <div
+                className="absolute -bottom-4 -left-4 w-32 h-32 bg-navy-700/30 rounded-full blur-xl animate-pulse"
+                style={{ animationDelay: "1s" }}
+              />
             </div>
           </div>
         </div>
       </section>
 
-      <Products />
-
-      {/* Features Section */}
+      {/* What We Build, kemampuan studio, bukan daftar jasa */}
       <section className="py-24 bg-dark-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="text-sm font-semibold text-orange-500 uppercase tracking-wider">
-              {t('home.features.label')}
+              {t("home.whatWeBuild.label")}
             </span>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mt-4 mb-6">
-              {t('home.features.title')}{' '}
-              <span className="text-orange-500">{t('home.features.titleHighlight')}</span>
+              {t("home.whatWeBuild.title")}{" "}
+              <span className="text-orange-500">
+                {t("home.whatWeBuild.titleHighlight")}
+              </span>
             </h2>
             <p className="text-gray-400 text-lg">
-              {t('home.features.subtitle')}
+              {t("home.whatWeBuild.subtitle")}
             </p>
           </div>
 
-          {/* Features Grid */}
+          {/* Capabilities Grid */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {features.map((feature) => (
+            {capabilities.map((capability) => (
               <div
-                key={feature.titleKey}
+                key={capability.titleKey}
                 className="p-8 bg-dark-800 border border-white/5 rounded-2xl card-hover group"
               >
-                <div className="w-14 h-14 flex items-center justify-center bg-dark-700 rounded-xl text-white mb-6 group-hover:scale-110 transition-transform duration-300">
-                  {feature.icon}
+                <div className="w-14 h-14 flex items-center justify-center bg-dark-700 rounded-xl text-orange-500 mb-6 group-hover:scale-110 transition-transform duration-300">
+                  {capability.icon}
                 </div>
                 <h3 className="text-xl font-bold mb-3 group-hover:text-white transition-colors">
-                  {t(feature.titleKey)}
+                  {t(capability.titleKey)}
                 </h3>
                 <p className="text-gray-400 text-sm leading-relaxed">
-                  {t(feature.descKey)}
+                  {t(capability.descKey)}
                 </p>
               </div>
             ))}
           </div>
-
-          {/* CTA */}
-          <div className="text-center mt-12">
-            <Link
-              href="/layanan"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-full transition-colors duration-300"
-            >
-              <span>{t('home.features.viewAllServices')}</span>
-              <ArrowRight className="w-5 h-5" />
-            </Link>
-          </div>
         </div>
       </section>
 
-      {/* Testimonials Section — hanya tampil kalau ada kutipan yang sudah disetujui */}
+      {/* Testimonials Section, hanya tampil kalau ada kutipan yang sudah disetujui */}
       {testimonials.length > 0 && (
         <section className="py-24 bg-dark-800">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {/* Header */}
             <div className="text-center max-w-3xl mx-auto mb-16">
               <span className="text-sm font-semibold text-orange-500 uppercase tracking-wider">
-                {t('home.testimonials.label')}
+                {t("home.testimonials.label")}
               </span>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mt-4 mb-6">
-                {t('home.testimonials.title')}{' '}
-                <span className="text-orange-500">{t('home.testimonials.titleHighlight')}</span>
+                {t("home.testimonials.title")}{" "}
+                <span className="text-orange-500">
+                  {t("home.testimonials.titleHighlight")}
+                </span>
               </h2>
               <p className="text-gray-400 text-lg">
-                {t('home.testimonials.subtitle')}
+                {t("home.testimonials.subtitle")}
               </p>
             </div>
 
-            {/* Testimonials Grid — grid menyesuaikan jumlah testimoni yang ada */}
-            <div className={`grid gap-8 ${testimonials.length === 1
-                ? 'max-w-xl mx-auto'
-                : testimonials.length === 2
-                  ? 'md:grid-cols-2 max-w-4xl mx-auto'
-                  : 'md:grid-cols-3'
-              }`}>
+            {/* Testimonials Grid, grid menyesuaikan jumlah testimoni yang ada */}
+            <div
+              className={`grid gap-8 ${
+                testimonials.length === 1
+                  ? "max-w-xl mx-auto"
+                  : testimonials.length === 2
+                    ? "md:grid-cols-2 max-w-4xl mx-auto"
+                    : "md:grid-cols-3"
+              }`}
+            >
               {testimonials.map((testimonial) => (
                 <div
                   key={testimonial.name}
@@ -308,10 +335,14 @@ export default function Home() {
                     </div>
                     <div>
                       <h4 className="font-semibold">{testimonial.name}</h4>
-                      <p className="text-sm text-gray-400">{testimonial.role}</p>
+                      <p className="text-sm text-gray-400">
+                        {testimonial.role}
+                      </p>
                     </div>
                   </div>
-                  <p className="text-gray-300 leading-relaxed italic">&ldquo;{testimonial.content[language]}&rdquo;</p>
+                  <p className="text-gray-300 leading-relaxed italic">
+                    &ldquo;{testimonial.content[language]}&rdquo;
+                  </p>
                 </div>
               ))}
             </div>
@@ -319,19 +350,21 @@ export default function Home() {
         </section>
       )}
 
-      {/* Trusted By — bukti faktual: klien yang sistemnya benar-benar berjalan */}
-      <section className="py-24 bg-dark-800">
+      {/* Trusted By, bukti faktual: klien yang sistemnya benar-benar berjalan */}
+      <section className="py-24 bg-dark-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="text-sm font-semibold text-orange-500 uppercase tracking-wider">
-              {t('home.trustedBy.label')}
+              {t("home.trustedBy.label")}
             </span>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mt-4 mb-6">
-              {t('home.trustedBy.title')}{' '}
-              <span className="text-orange-500">{t('home.trustedBy.titleHighlight')}</span>
+              {t("home.trustedBy.title")}{" "}
+              <span className="text-orange-500">
+                {t("home.trustedBy.titleHighlight")}
+              </span>
             </h2>
             <p className="text-gray-400 text-lg">
-              {t('home.trustedBy.subtitle')}
+              {t("home.trustedBy.subtitle")}
             </p>
           </div>
 
@@ -360,10 +393,56 @@ export default function Home() {
 
           <div className="text-center mt-12">
             <Link
-              href="/produk"
+              href="/portofolio"
               className="inline-flex items-center gap-2 text-orange-500 font-semibold hover:text-orange-400 transition-colors"
             >
-              <span>{t('home.trustedBy.viewPortfolio')}</span>
+              <span>{t("home.trustedBy.viewPortfolio")}</span>
+              <ArrowRight className="w-5 h-5" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Work With Us, lini sekunder, ditempatkan SETELAH produk & studio.
+          Framing: kemampuan kami juga terbuka untuk pihak lain. */}
+      <section className="py-24 bg-dark-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="text-sm font-semibold text-orange-500 uppercase tracking-wider">
+              {t("work.forms.label")}
+            </span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mt-4 mb-6">
+              {t("work.forms.title")}{" "}
+              <span className="text-orange-500">
+                {t("work.forms.titleHighlight")}
+              </span>
+            </h2>
+            <p className="text-gray-400 text-lg">{t("work.heroSubtitle")}</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {collaborationForms.map((form) => (
+              <div
+                key={form.titleKey}
+                className="p-8 bg-dark-800 border border-white/5 rounded-2xl card-hover group"
+              >
+                <div className="w-12 h-12 flex items-center justify-center bg-dark-700 rounded-xl text-orange-500 mb-5 group-hover:scale-110 transition-transform duration-300">
+                  {form.icon}
+                </div>
+                <h3 className="text-lg font-bold mb-3">{t(form.titleKey)}</h3>
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  {t(form.descKey)}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <Link
+              href="/layanan"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-transparent border-2 border-orange-500 text-white font-semibold rounded-full hover:bg-orange-500/10 transition-all duration-300"
+            >
+              <span>{t("home.hero.cta2")}</span>
               <ArrowRight className="w-5 h-5" />
             </Link>
           </div>
@@ -375,21 +454,26 @@ export default function Home() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <span className="text-sm font-semibold text-orange-500 uppercase tracking-wider">
-              {t('home.faq.label')}
+              {t("home.faq.label")}
             </span>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mt-4 mb-6">
-              {t('home.faq.title')}{' '}
-              <span className="text-orange-500">{t('home.faq.titleHighlight')}</span>
+              {t("home.faq.title")}{" "}
+              <span className="text-orange-500">
+                {t("home.faq.titleHighlight")}
+              </span>
             </h2>
-            <p className="text-gray-400 text-lg">
-              {t('home.faq.subtitle')}
-            </p>
+            <p className="text-gray-400 text-lg">{t("home.faq.subtitle")}</p>
           </div>
 
           <div className="space-y-6">
             {faqs.map((faq) => (
-              <div key={faq.qKey} className="bg-dark-700 border border-white/10 rounded-xl p-8 hover:border-orange-500/30 transition-all duration-300">
-                <h3 className="text-xl font-bold mb-4 text-white">{t(faq.qKey)}</h3>
+              <div
+                key={faq.qKey}
+                className="bg-dark-700 border border-white/10 rounded-xl p-8 hover:border-orange-500/30 transition-all duration-300"
+              >
+                <h3 className="text-xl font-bold mb-4 text-white">
+                  {t(faq.qKey)}
+                </h3>
                 <p className="text-gray-400 leading-relaxed">{t(faq.aKey)}</p>
               </div>
             ))}
@@ -400,7 +484,7 @@ export default function Home() {
               href="/kontak"
               className="inline-flex items-center gap-2 text-orange-500 font-semibold hover:text-orange-400 transition-colors"
             >
-              <span>{t('home.faq.moreQuestions')}</span>
+              <span>{t("home.faq.moreQuestions")}</span>
               <ArrowRight className="w-5 h-5" />
             </Link>
           </div>
@@ -410,31 +494,35 @@ export default function Home() {
       {/* CTA Section */}
       <section className="py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-dark-700" />
-        <div className="absolute inset-0" style={{
-          backgroundImage: 'radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px)',
-          backgroundSize: '30px 30px'
-        }} />
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage:
+              "radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px)",
+            backgroundSize: "30px 30px",
+          }}
+        />
 
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
-            {t('home.cta.title')}
+            {t("home.cta.title")}
           </h2>
           <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
-            {t('home.cta.subtitle')}
+            {t("home.cta.subtitle")}
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/kontak"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-navy-800 font-bold rounded-full hover:bg-gray-100 transition-all duration-300 hover:scale-105"
             >
-              <span>{t('home.cta.button')}</span>
+              <span>{t("home.cta.button")}</span>
               <ArrowRight className="w-5 h-5" />
             </Link>
             <Link
               href="/produk"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-transparent border-2 border-white text-white font-semibold rounded-full hover:bg-white/10 transition-all duration-300"
             >
-              <span>{t('home.cta.secondary')}</span>
+              <span>{t("home.cta.secondary")}</span>
             </Link>
           </div>
 
@@ -442,11 +530,11 @@ export default function Home() {
           <div className="flex flex-wrap items-center justify-center gap-8 mt-12 text-white/70 text-sm">
             <div className="flex items-center gap-2">
               <CheckCircle className="w-5 h-5" />
-              <span>{t('home.cta.freeConsultation')}</span>
+              <span>{t("home.cta.freeConsultation")}</span>
             </div>
             <div className="flex items-center gap-2">
               <CheckCircle className="w-5 h-5" />
-              <span>{t('home.cta.professionalTeam')}</span>
+              <span>{t("home.cta.professionalTeam")}</span>
             </div>
           </div>
         </div>

@@ -7,18 +7,19 @@ import Reveal from "../components/Reveal";
 import ShowcaseCard from "../components/ShowcaseCard";
 import ShowcaseModal, { ShowcaseItem } from "../components/ShowcaseModal";
 import { useLanguage } from "../context/LanguageContext";
-import { products } from "../data/showcase";
+import { clients } from "../data/showcase";
 
 // ============================================
 
-// HALAMAN PRODUK
+// HALAMAN PORTOFOLIO
 // ============================================
-// Khusus berisi PRODUK MILIK TWENTI STUDIO.
-// Proyek klien ada di halaman terpisah (/portofolio).
-// Data produk diubah di app/data/showcase.ts.
+// Khusus berisi PROYEK KLIEN. Produk milik Twenti sendiri
+// ada di halaman terpisah (/produk). Pemisahan ini disengaja:
+// pengunjung tidak boleh salah membaca produk internal sebagai
+// portofolio jasa, atau sebaliknya.
 // ============================================
 
-const ProductsClient = () => {
+const PortfolioClient = () => {
   const { t, language } = useLanguage();
   const [selectedItem, setSelectedItem] = useState<ShowcaseItem | null>(null);
 
@@ -38,19 +39,21 @@ const ProductsClient = () => {
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <Reveal>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-              {t("products.titlePrefix")}{" "}
-              <span className="text-orange-500">{t("products.title")}</span>
+              {t("portfolio.heroTitle")}{" "}
+              <span className="text-orange-500">
+                {t("portfolio.heroHighlight")}
+              </span>
             </h1>
           </Reveal>
           <Reveal delay={120}>
             <p className="text-lg sm:text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
-              {t("products.subtitle")}
+              {t("portfolio.heroSubtitle")}
             </p>
           </Reveal>
         </div>
       </section>
 
-      {/* Grid produk */}
+      {/* Grid proyek klien */}
       <section className="py-20 bg-dark-800 relative overflow-hidden">
         <div
           className="absolute inset-0 opacity-5"
@@ -62,30 +65,40 @@ const ProductsClient = () => {
         />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {products.map((product, index) => (
-              <Reveal key={product.name} delay={index * 90} className="h-full">
-                <ShowcaseCard
-                  name={product.name}
-                  category={product.category}
-                  description={product.description[language]}
-                  image={product.image}
-                  status={product.status}
-                  typeLabelKey="label.twentiProduct"
-                  onClick={() =>
-                    setSelectedItem({
-                      name: product.name,
-                      description: product.description,
-                      category: product.category,
-                      link: product.link,
-                      image: product.image,
-                    })
-                  }
-                  t={t}
-                />
-              </Reveal>
-            ))}
-          </div>
+          {clients.length > 0 ? (
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {clients.map((work, index) => (
+                <Reveal key={work.name} delay={index * 90} className="h-full">
+                  <ShowcaseCard
+                    name={work.name}
+                    category={work.category}
+                    description={work.description[language]}
+                    image={work.image}
+                    subtitle={work.client}
+                    typeLabelKey="label.clientProject"
+                    onClick={() =>
+                      setSelectedItem({
+                        name: work.name,
+                        description: work.description,
+                        category: work.category,
+                        link: work.link,
+                        image: work.image,
+                        badge: { id: work.client, en: work.client },
+                      })
+                    }
+                    t={t}
+                  />
+                </Reveal>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-16">
+              <h2 className="text-2xl font-bold mb-3">
+                {t("portfolio.emptyTitle")}
+              </h2>
+              <p className="text-gray-400">{t("portfolio.emptyDesc")}</p>
+            </div>
+          )}
         </div>
       </section>
 
@@ -95,24 +108,24 @@ const ProductsClient = () => {
           <Reveal>
             <div className="p-10 bg-dark-700 border border-white/10 rounded-3xl">
               <h2 className="text-2xl sm:text-3xl font-bold mb-4">
-                {t("products.customSolution")}
+                {t("portfolio.ctaTitle")}
               </h2>
               <p className="text-gray-400 mb-8 max-w-xl mx-auto">
-                {t("products.customDesc")}
+                {t("portfolio.ctaDesc")}
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Link
-                  href="/layanan"
+                  href="/kontak"
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-full transition-all duration-300 hover:scale-105"
                 >
-                  <span>{t("products.viewServices")}</span>
+                  <span>{t("products.contactUs")}</span>
                   <ArrowRight className="w-5 h-5" />
                 </Link>
                 <Link
-                  href="/portofolio"
+                  href="/produk"
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-transparent border-2 border-white/20 text-white font-semibold rounded-full hover:border-orange-500 hover:bg-orange-500/5 transition-all duration-300"
                 >
-                  <span>{t("home.trustedBy.viewPortfolio")}</span>
+                  <span>{t("portfolio.viewProducts")}</span>
                 </Link>
               </div>
             </div>
@@ -128,4 +141,4 @@ const ProductsClient = () => {
   );
 };
 
-export default ProductsClient;
+export default PortfolioClient;
