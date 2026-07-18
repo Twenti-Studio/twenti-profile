@@ -38,6 +38,12 @@ const Products = () => {
 
   const currentLang = isHydrated ? language : "id";
 
+  // Tiga produk yang sudah bisa dipakai. Yang berstatus 'development'
+  // atau 'coming-soon' sengaja tidak ikut tampil di beranda.
+  const featuredProducts = products
+    .filter((product) => product.status === "available")
+    .slice(0, 3);
+
   return (
     <section
       id="products"
@@ -71,9 +77,16 @@ const Products = () => {
           <p className="text-gray-400 text-lg">{t("home.products.subtitle")}</p>
         </div>
 
-        {/* Products Grid */}
+        {/* Products Grid.
+            Beranda cukup menampilkan 3 produk sebagai cuplikan;
+            daftar lengkapnya ada di /produk lewat tombol di bawah.
+
+            Hanya produk berstatus 'available' yang ditampilkan. Produk yang
+            masih dikembangkan tidak layak jadi etalase depan, dan filter ini
+            membuatnya otomatis: begitu statusnya diubah jadi 'available' di
+            app/data/showcase.ts, produk itu ikut antre tampil di sini. */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {products.map((product) => (
+          {featuredProducts.map((product) => (
             <a
               key={product.name}
               href={product.link}

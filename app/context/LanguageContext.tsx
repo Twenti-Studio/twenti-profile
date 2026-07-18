@@ -64,17 +64,19 @@ export const translations: Translations = {
 
   // HOME PAGE - HERO
 
+  // Tagline sengaja pendek. Penjelasan panjang ada di section
+  // Tentang Kami dan halaman /tentang.
   "home.hero.title1": {
-    id: "Kami Membangun Produk Digital",
-    en: "We Build Digital Products",
+    id: "Dari Masalah,",
+    en: "From a Problem,",
   },
   "home.hero.title2": {
-    id: "untuk Menyelesaikan Masalah Nyata",
-    en: "That Solve Real Problems",
+    id: "Jadi Produk",
+    en: "to a Product",
   },
   "home.hero.subtitle": {
-    id: "Twenti Studio adalah app studio yang merancang, membangun, dan mengembangkan produk digital. Selain mengembangkan produk internal, kami juga berkolaborasi dengan bisnis dan organisasi untuk membangun website, aplikasi, serta sistem khusus.",
-    en: "Twenti Studio is an app studio that designs, builds, and develops digital products. Beyond developing our own products, we also collaborate with businesses and organizations to build websites, applications, and custom systems.",
+    id: "App studio yang membangun produk digitalnya sendiri, dan membantu bisnis membangun produknya.",
+    en: "An app studio that builds its own digital products, and helps businesses build theirs.",
   },
   "home.hero.cta1": { id: "Lihat Produk Kami", en: "See Our Products" },
   "home.hero.cta2": {

@@ -101,8 +101,6 @@ export default function Home() {
       avatar: "R",
       approved: true,
     },
-    // DRAFT, belum tampil. Kirimkan kalimat di bawah ke Juan, minta dia
-    // ubah/setujui, lalu ganti approved menjadi true.
     {
       name: "Juan",
       role: "Pengguna FiNot",
@@ -111,9 +109,8 @@ export default function Home() {
         en: "Since using FiNot, tracking my income and expenses has become a habit. It is quick, I just type it in and I am done.",
       },
       avatar: "J",
-      approved: false,
+      approved: true,
     },
-    // DRAFT, belum tampil. Sama seperti di atas, minta persetujuan Saman dulu.
     {
       name: "Saman",
       role: "Pengguna Games Twenti",
@@ -122,7 +119,7 @@ export default function Home() {
         en: "Top-ups are fast and the flow is clear, so I have no doubts when making a transaction.",
       },
       avatar: "S",
-      approved: false,
+      approved: true,
     },
   ];
 
