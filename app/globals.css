@@ -103,6 +103,18 @@ body {
   }
 }
 
+/* Navbar: dropdown turun halus saat dibuka */
+@keyframes dropdownIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* Section & card: muncul dari bawah saat masuk viewport */
 @keyframes fadeUp {
   from {

@@ -31,6 +31,37 @@ export const translations: Translations = {
   "nav.contact": { id: "Kontak", en: "Contact" },
   "nav.startProject": { id: "Bangun Bersama Kami", en: "Build With Us" },
 
+  // Label grup dropdown navbar
+  "nav.group.work": { id: "Karya", en: "Work" },
+  "nav.group.services": { id: "Layanan", en: "Services" },
+  "nav.group.studio": { id: "Studio", en: "Studio" },
+
+  // Keterangan singkat tiap item di dalam dropdown
+  "nav.desc.products": {
+    id: "Produk digital yang kami bangun sendiri",
+    en: "Digital products we build ourselves",
+  },
+  "nav.desc.portfolio": {
+    id: "Proyek yang kami kerjakan untuk klien",
+    en: "Projects we built for clients",
+  },
+  "nav.desc.services": {
+    id: "Bentuk kolaborasi dan cara kami bekerja",
+    en: "Ways to collaborate and how we work",
+  },
+  "nav.desc.pricing": {
+    id: "Estimasi biaya tiap jenis pengerjaan",
+    en: "Cost estimates for each type of work",
+  },
+  "nav.desc.about": {
+    id: "Identitas, tujuan, dan cara kerja studio",
+    en: "Identity, purpose, and how the studio works",
+  },
+  "nav.desc.insight": {
+    id: "Catatan proses dan riset produk",
+    en: "Process notes and product research",
+  },
+
   // HOME PAGE - HERO
 
   "home.hero.title1": {
@@ -56,17 +87,14 @@ export const translations: Translations = {
   "home.about.label": { id: "Tentang Kami", en: "About Us" },
   "home.about.title": { id: "App Studio", en: "App Studio" },
   "home.about.titleHighlight": { id: "Berbasis Solusi", en: "Solution-Based" },
+  // Sengaja ringkas. Penjelasan lengkap ada di halaman /tentang.
   "home.about.desc1": {
-    id: "Twenti Studio adalah app studio yang berfokus pada pengembangan produk digital dan aplikasi yang dirancang untuk membantu menyelesaikan permasalahan nyata pengguna.",
-    en: "Twenti Studio is an app studio focused on developing digital products and applications designed to help solve real user problems.",
+    id: "Kami app studio yang membangun produk digitalnya sendiri, dari perancangan sampai pengembangan berkelanjutan.",
+    en: "We are an app studio that builds its own digital products, from design through continuous development.",
   },
   "home.about.desc2": {
-    id: "Kami membangun berbagai aplikasi dan solusi digital dengan pendekatan berbasis produk, mulai dari perancangan, pengembangan, hingga iterasi berkelanjutan, dengan tujuan menciptakan sistem yang fungsional, stabil, dan relevan untuk digunakan dalam jangka panjang.",
-    en: "We build various applications and digital solutions with a product-based approach, from design, development, to continuous iteration, with the goal of creating systems that are functional, stable, and relevant for long-term use.",
-  },
-  "home.about.desc3": {
-    id: "Selain mengembangkan produk internal, Twenti Studio juga menyediakan layanan pengembangan software bagi bisnis dan organisasi yang membutuhkan partner teknologi, baik untuk membangun sistem dari awal, mengembangkan sistem yang sudah ada, maupun menggunakan tools dari produk yang kami miliki.",
-    en: "In addition to developing internal products, Twenti Studio also provides software development services for businesses and organizations that need a technology partner, whether to build systems from scratch, develop existing systems, or use tools from our products.",
+    id: "Kemampuan yang sama kami pakai untuk membantu bisnis dan organisasi membangun sistemnya.",
+    en: "We bring the same capabilities to help businesses and organizations build their systems.",
   },
   "home.about.desc4": {
     id: "Twenti Studio beroperasi di bawah PT Twenti Studio Nusantara.",

@@ -3,6 +3,7 @@
 import {
   ArrowRight,
   CheckCircle,
+  ChevronDown,
   Code2,
   Laptop,
   Layout,
@@ -13,11 +14,14 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 import Products from "./components/Products/Products";
 import { useLanguage } from "./context/LanguageContext";
 
 export default function Home() {
   const { t, language } = useLanguage();
+  // Indeks FAQ yang jawabannya sedang terbuka (null = semua tertutup)
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   // Empat kemampuan inti studio, bukan daftar jasa.
   // Framing-nya: kemampuan ini kami asah lewat produk sendiri
@@ -68,26 +72,24 @@ export default function Home() {
   // ============================================
   // TESTIMONI
   // ============================================
-  // KOSONG SAMPAI ADA KUTIPAN YANG DISETUJUI ORANGNYA.
-  // Jangan isi dengan kalimat karangan yang diatasnamakan orang asli
-  // itu testimoni palsu dan merusak kredibilitas kalau diklarifikasi.
+  // Hanya entri dengan `approved: true` yang tampil di situs.
   //
-  // Cara mengisi: minta Juan, Saman, dan Philos menuliskan/menyetujui
-  // kalimatnya sendiri, lalu tambahkan object seperti contoh di bawah.
-  // Begitu array ini terisi, section testimoni otomatis muncul kembali.
+  // ATURANNYA: jangan set approved menjadi true sebelum orang yang
+  // namanya dicantumkan benar-benar menyetujui kalimatnya. Kutipan
+  // karangan yang diatasnamakan orang asli adalah testimoni palsu,
+  // dan gampang runtuh begitu ada calon klien yang mengonfirmasi.
   //
-  // {
-  //   name: 'Saman'
-  //   role: 'Klien, KlirLogistik', //   content: {
-  //     id: 'Kalimat asli dari yang bersangkutan.'
-  //     en: 'Their own words, translated.'
-  //   }
-  //   avatar: 'S', // }, // ============================================
-  const testimonials: {
+  // Alur pakainya: kalimat draft di bawah dikirim ke orangnya lewat
+  // WhatsApp, dia boleh mengubah sesukanya, lalu tinggal ubah
+  // approved menjadi true.
+  // ============================================
+  const allTestimonials: {
     name: string;
     role: string;
     content: { id: string; en: string };
     avatar: string;
+    /** Hanya yang `true` yang tampil di situs. Lihat catatan di atas. */
+    approved: boolean;
   }[] = [
     {
       name: "Ramlan",
@@ -97,8 +99,34 @@ export default function Home() {
         en: "The work was done well and it runs well.",
       },
       avatar: "R",
+      approved: true,
+    },
+    // DRAFT, belum tampil. Kirimkan kalimat di bawah ke Juan, minta dia
+    // ubah/setujui, lalu ganti approved menjadi true.
+    {
+      name: "Juan",
+      role: "Pengguna FiNot",
+      content: {
+        id: "Sejak pakai FiNot, catat pemasukan dan pengeluaran jadi kebiasaan. Prosesnya cepat, tinggal ketik lalu selesai.",
+        en: "Since using FiNot, tracking my income and expenses has become a habit. It is quick, I just type it in and I am done.",
+      },
+      avatar: "J",
+      approved: false,
+    },
+    // DRAFT, belum tampil. Sama seperti di atas, minta persetujuan Saman dulu.
+    {
+      name: "Saman",
+      role: "Pengguna Games Twenti",
+      content: {
+        id: "Proses top-upnya cepat dan alurnya jelas, jadi tidak ragu waktu transaksi.",
+        en: "Top-ups are fast and the flow is clear, so I have no doubts when making a transaction.",
+      },
+      avatar: "S",
+      approved: false,
     },
   ];
+
+  const testimonials = allTestimonials.filter((item) => item.approved);
 
   // Klien nyata yang sudah berjalan, ini bukti faktual, bukan klaim.
   const trustedBy = [
@@ -196,11 +224,8 @@ export default function Home() {
               <p className="text-gray-400 text-lg leading-relaxed mb-4">
                 {t("home.about.desc1")}
               </p>
-              <p className="text-gray-400 text-lg leading-relaxed mb-4">
-                {t("home.about.desc2")}
-              </p>
               <p className="text-gray-400 text-lg leading-relaxed mb-8">
-                {t("home.about.desc3")}
+                {t("home.about.desc2")}
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link
@@ -465,18 +490,49 @@ export default function Home() {
             <p className="text-gray-400 text-lg">{t("home.faq.subtitle")}</p>
           </div>
 
-          <div className="space-y-6">
-            {faqs.map((faq) => (
-              <div
-                key={faq.qKey}
-                className="bg-dark-700 border border-white/10 rounded-xl p-8 hover:border-orange-500/30 transition-all duration-300"
-              >
-                <h3 className="text-xl font-bold mb-4 text-white">
-                  {t(faq.qKey)}
-                </h3>
-                <p className="text-gray-400 leading-relaxed">{t(faq.aKey)}</p>
-              </div>
-            ))}
+          {/* Accordion: jawaban tersembunyi sampai pertanyaannya diklik */}
+          <div className="space-y-4">
+            {faqs.map((faq, index) => {
+              const isOpen = openFaq === index;
+              return (
+                <div
+                  key={faq.qKey}
+                  className={`bg-dark-700 border rounded-xl overflow-hidden transition-colors duration-300 ${
+                    isOpen
+                      ? "border-orange-500/40"
+                      : "border-white/10 hover:border-orange-500/30"
+                  }`}
+                >
+                  <button
+                    type="button"
+                    onClick={() => setOpenFaq(isOpen ? null : index)}
+                    aria-expanded={isOpen}
+                    className="w-full flex items-center justify-between gap-4 text-left p-6 sm:p-7 cursor-pointer"
+                  >
+                    <h3
+                      className={`text-base sm:text-lg font-bold transition-colors duration-300 ${
+                        isOpen ? "text-orange-500" : "text-white"
+                      }`}
+                    >
+                      {t(faq.qKey)}
+                    </h3>
+                    <ChevronDown
+                      className={`w-5 h-5 shrink-0 transition-transform duration-300 ${
+                        isOpen ? "rotate-180 text-orange-500" : "text-gray-500"
+                      }`}
+                    />
+                  </button>
+
+                  {isOpen && (
+                    <div className="px-6 sm:px-7 pb-6 sm:pb-7 -mt-1 animate-[dropdownIn_0.25s_ease-out]">
+                      <p className="text-gray-400 leading-relaxed">
+                        {t(faq.aKey)}
+                      </p>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
 
           <div className="text-center mt-12">
