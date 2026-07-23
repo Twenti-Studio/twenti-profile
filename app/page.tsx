@@ -121,6 +121,16 @@ export default function Home() {
       avatar: "S",
       approved: true,
     },
+    {
+      name: "Ramdi",
+      role: "Presiden BEM FSTI 2026",
+      content: {
+        id: "Web yang dihasilkan sangat bagus dan konsepnya sangat membantu organisasi dalam internalisasi manajemen proker.",
+        en: "The website turned out excellent, and the concept greatly helps the organization internalize its work-program management.",
+      },
+      avatar: "RD",
+      approved: true,
+    },
   ];
 
   const testimonials = allTestimonials.filter((item) => item.approved);
@@ -137,6 +147,11 @@ export default function Home() {
       project: "KlirLogistik",
       image: "/image/klirlogistik.png",
     },
+    {
+      name: "BEM FSTI ITK",
+      project: "bemfsti.org",
+      image: "/image/bemfsti.png",
+    },
   ];
 
   const faqs = [
@@ -150,21 +165,30 @@ export default function Home() {
     <>
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-        {/* Background Effects */}
+        {/* Background: grid teknis, bukan glow.
+            Blob glow navy/orange yang lama dihapus karena justru membuat
+            hero terlihat generik. Diganti kisi garis bergaya blueprint,
+            sesuai identitas app studio (engineering, bukan kabut). */}
         <div className="absolute inset-0 bg-dark-900">
-          <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-navy-700/30 rounded-full blur-[100px] animate-float" />
-          <div
-            className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-orange-500/20 rounded-full blur-[100px] animate-float"
-            style={{ animationDelay: "2s" }}
-          />
+          {/* Kisi garis tipis, di-mask agar memudar ke tepi supaya tetap
+              ringan dan perhatian tetap ke headline. Mask di sini adalah
+              topeng transparansi, bukan gradasi warna yang terlihat. */}
           <div
             className="absolute inset-0"
             style={{
               backgroundImage:
-                "radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px)",
-              backgroundSize: "50px 50px",
+                "linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)",
+              backgroundSize: "64px 64px",
+              maskImage:
+                "radial-gradient(ellipse 75% 55% at 50% 42%, #000 35%, transparent 100%)",
+              WebkitMaskImage:
+                "radial-gradient(ellipse 75% 55% at 50% 42%, #000 35%, transparent 100%)",
             }}
           />
+          {/* Aksen geometris on-brand: bracket sudut orange tipis,
+              pengganti glow blob. Memberi bingkai, bukan kabut. */}
+          <div className="absolute top-28 right-6 sm:right-12 w-16 h-16 sm:w-24 sm:h-24 border-t border-r border-orange-500/30" />
+          <div className="absolute bottom-28 left-6 sm:left-12 w-16 h-16 sm:w-24 sm:h-24 border-b border-l border-orange-500/30" />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
@@ -265,12 +289,10 @@ export default function Home() {
                   {t("home.about.tagline")}
                 </p>
               </div>
-              {/* Aksen dekoratif */}
-              <div className="absolute -top-4 -right-4 w-20 h-20 bg-orange-500/20 rounded-full blur-xl animate-pulse -z-10" />
-              <div
-                className="absolute -bottom-4 -left-4 w-24 h-24 bg-navy-700/30 rounded-full blur-xl animate-pulse -z-10"
-                style={{ animationDelay: "1s" }}
-              />
+              {/* Aksen geometris: bingkai offset tipis on-brand,
+                  pengganti glow blob dekoratif. Garis, bukan kabut. */}
+              <div className="absolute -inset-3 rounded-[20px] border border-orange-500/20 -z-10" />
+              <div className="absolute -bottom-3 -right-3 w-20 h-20 border-b border-r border-orange-500/30 rounded-br-2xl -z-10" />
             </div>
           </div>
         </div>

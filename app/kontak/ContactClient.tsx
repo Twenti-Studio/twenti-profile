@@ -1,6 +1,14 @@
 "use client";
 
-import { ArrowRight, Check, Loader2, Mail, MapPin, Send } from "lucide-react";
+import {
+  ArrowRight,
+  Check,
+  Loader2,
+  Mail,
+  MapPin,
+  MessageCircle,
+  Send,
+} from "lucide-react";
 import { FormEvent, useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
 
@@ -104,6 +112,12 @@ const ContactClient = () => {
   };
 
   const contactInfo = [
+    {
+      icon: <MessageCircle className="w-6 h-6" />,
+      labelKey: "contact.whatsappLabel",
+      value: "+62 851-9913-1536",
+      href: "https://wa.me/6285199131536",
+    },
     {
       icon: <Mail className="w-6 h-6" />,
       labelKey: "contact.emailLabel",
@@ -456,17 +470,24 @@ const ContactClient = () => {
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <a
-                  href="mailto:twentistudio@gmail.com"
+                  href={`https://wa.me/6285199131536?text=${encodeURIComponent(
+                    language === "id"
+                      ? "Halo Twenti Studio, saya ingin bertanya tentang proyek saya."
+                      : "Hello Twenti Studio, I would like to ask about my project.",
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-full transition-colors duration-300"
+                >
+                  <MessageCircle className="w-4 h-4" />
+                  <span>{language === "id" ? "Chat WhatsApp" : "Chat on WhatsApp"}</span>
+                </a>
+                <a
+                  href="mailto:twentistudio@gmail.com"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-transparent border-2 border-white/20 text-white font-semibold rounded-full hover:border-orange-500 hover:bg-orange-500/10 transition-all duration-300"
                 >
                   <span>{language === "id" ? "Email Kami" : "Email Us"}</span>
                   <ArrowRight className="w-4 h-4" />
-                </a>
-                <a
-                  href="#contact-form"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-transparent border-2 border-white/20 text-white font-semibold rounded-full hover:border-orange-500 hover:bg-orange-500/10 transition-all duration-300"
-                >
-                  <span>{t("contact.sendMessage")}</span>
                 </a>
               </div>
             </div>

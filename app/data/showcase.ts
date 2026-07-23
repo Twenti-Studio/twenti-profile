@@ -138,4 +138,15 @@ export const clients: ClientWork[] = [
     link: "https://klirlogistik.technocrats.studio",
     image: "/image/klirlogistik.png",
   },
+  {
+    name: "BEM FSTI ITK",
+    client: "BEM FSTI Institut Teknologi Kalimantan",
+    description: {
+      id: "Platform resmi Badan Eksekutif Mahasiswa Fakultas Sains dan Teknologi Informasi ITK. Menyatukan agenda kegiatan, program kerja, dokumentasi, dan kanal aspirasi mahasiswa dalam satu situs, sehingga informasi organisasi mudah diakses dan mahasiswa punya satu tempat untuk mengikuti gerakan BEM.",
+      en: "The official platform of the Student Executive Board (BEM) of the Faculty of Science and Information Technology, ITK. It brings event agendas, work programs, documentation, and a student aspiration channel into one site, making organizational information easy to access and giving students a single place to follow BEM's activities.",
+    },
+    category: "Organization Platform",
+    link: "https://bemfsti.org",
+    image: "/image/bemfsti.png",
+  },
 ];
