@@ -1,6 +1,7 @@
 "use client";
 
 import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 
 // ============================================
 
@@ -75,11 +76,15 @@ const ShowcaseCard = ({
       {/* Preview */}
       <div className="relative aspect-video w-full overflow-hidden bg-dark-600">
         {image ? (
-          <img
+          // next/image mengecilkan dan mengubah format gambar secara
+          // otomatis, sekaligus tetap menunda pemuatan seperti
+          // loading="lazy" sebelumnya.
+          <Image
             src={image}
-            alt={`Logo ${name}`}
-            loading="lazy"
-            className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500 ease-out"
+            alt={`Tampilan proyek ${name} oleh Twenti Studio`}
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            className="object-contain group-hover:scale-105 transition-transform duration-500 ease-out"
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center">

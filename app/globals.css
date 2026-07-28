@@ -26,7 +26,10 @@
   --color-dark-400: #2A2E38;
 
   /* Fonts */
-  --font-sans: 'Inter', system-ui, sans-serif;
+  /* --font-inter di-set oleh next/font di app/layout.tsx.
+     Fallback dipertahankan supaya teks tetap tampil wajar
+     sebelum berkas font selesai diunduh. */
+  --font-sans: var(--font-inter), 'Inter', system-ui, sans-serif;
 }
 
 /* Base Styles */

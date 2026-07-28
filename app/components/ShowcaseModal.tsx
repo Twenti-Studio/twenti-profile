@@ -1,6 +1,7 @@
 "use client";
 
 import { ExternalLink, X } from "lucide-react";
+import Image from "next/image";
 import { useEffect } from "react";
 import { useLanguage } from "../context/LanguageContext";
 
@@ -76,12 +77,16 @@ const ShowcaseModal = ({ item, onClose }: ShowcaseModalProps) => {
 
         <div className="p-8 text-center">
           {/* Logo */}
-          <div className="w-24 h-24 mx-auto mb-5 rounded-2xl bg-dark-600 border border-white/5 flex items-center justify-center overflow-hidden">
+          <div className="relative w-24 h-24 mx-auto mb-5 rounded-2xl bg-dark-600 border border-white/5 flex items-center justify-center overflow-hidden">
             {item.image ? (
-              <img
+              // Ditampilkan hanya 96x96 px, jadi next/image cukup
+              // mengirim versi kecilnya alih-alih berkas aslinya.
+              <Image
                 src={item.image}
-                alt={item.name}
-                className="w-full h-full object-contain p-2"
+                alt={`Logo ${item.name}`}
+                fill
+                sizes="96px"
+                className="object-contain p-2"
               />
             ) : (
               <span className="text-3xl font-bold text-gray-500">

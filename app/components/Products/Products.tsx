@@ -1,6 +1,7 @@
 "use client";
 
 import { ArrowRight, ExternalLink } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useLanguage } from "../../context/LanguageContext";
@@ -113,10 +114,19 @@ const Products = () => {
               {/* Preview */}
               <div className="relative aspect-video w-full overflow-hidden bg-dark-700">
                 {product.image ? (
-                  <img
+                  // next/image, bukan <img>: berkas asli di /public
+                  // berukuran ratusan KB sampai 2 MB, dan komponen ini
+                  // mengecilkannya sekaligus mengubahnya ke AVIF/WebP
+                  // saat diminta. Ukuran unduhan itu ikut dinilai Google
+                  // lewat Core Web Vitals.
+                  <Image
                     src={product.image}
-                    alt={product.name}
-                    className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500 ease-out"
+                    alt={`Tampilan produk ${product.name} buatan Twenti Studio`}
+                    fill
+                    // Memberi tahu browser lebar tampil sebenarnya supaya
+                    // ia memilih ukuran terkecil yang masih tajam.
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-contain group-hover:scale-105 transition-transform duration-500 ease-out"
                   />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center">
